@@ -29,7 +29,8 @@ if __name__ == "__main__":
 
     # Sets path to additional resources wad file which is basically your scenario wad.
     # If not specified default maps will be used and it's pretty much useless... unless you want to play good old Doom.
-    game.set_doom_scenario_path(os.path.join(vzd.scenarios_path, "basic.wad"))
+    print("Current working directory:", os.getcwd())
+    game.set_doom_scenario_path("./3rd-year-project/maps/basic_scenario.wad")
 
     # Sets map to start (scenario .wad files can contain many maps).
     game.set_doom_map("map01")
@@ -77,7 +78,7 @@ if __name__ == "__main__":
     # game.add_available_button(vzd.Button.ATTACK)
     # Or by setting them all at once:
     game.set_available_buttons(
-        [vzd.Button.MOVE_LEFT, vzd.Button.MOVE_RIGHT, vzd.Button.ATTACK]
+        [vzd.Button.MOVE_LEFT, vzd.Button.MOVE_RIGHT, vzd.Button.MOVE_FORWARD, vzd.Button.TURN_RIGHT,vzd.Button.TURN_LEFT]
     )
     # Buttons that will be used can be also checked by:
     print("Available buttons:", [b.name for b in game.get_available_buttons()])
@@ -103,7 +104,7 @@ if __name__ == "__main__":
     game.set_window_visible(True)
 
     # Turns on the sound. (turned off by default)
-    # game.set_sound_enabled(True)
+    game.set_sound_enabled(False)
     # Because of some problems with OpenAL on Ubuntu 20.04, we keep this line commented,
     # the sound is only useful for humans watching the game.
 
@@ -129,14 +130,14 @@ if __name__ == "__main__":
     # MOVE_LEFT, MOVE_RIGHT, ATTACK
     # game.get_available_buttons_size() can be used to check the number of available buttons.
     # 5 more combinations are naturally possible but only 3 are included for transparency when watching.
-    actions = [[True, False, False], [False, True, False], [False, False, True]]
+    actions = [[True, False, False, False, False], [False, True, False, False, False], [False, False, True, False, False ],[False, False, False, True, False],[False,False,False,False,True]]
 
     # Run this many episodes
-    episodes = 10
+    episodes = 5
 
     # Sets time that will pause the engine after each action (in seconds)
     # Without this everything would go too fast for you to keep track of what's happening.
-    sleep_time = 1.0 / vzd.DEFAULT_TICRATE  # = 0.028
+    sleep_time = 1 / vzd.DEFAULT_TICRATE  # = 0.028
 
     for i in range(episodes):
         print(f"Episode #{i + 1}")
@@ -175,11 +176,11 @@ if __name__ == "__main__":
             # game.get_game_variable(GameVariable.AMMO2)
 
             # Makes an action (here random one) and returns a reward.
-            r = game.make_action(choice(actions))
+            # r = game.make_action(choice(actions))
 
             # Makes a "prolonged" action and skip frames:
-            # skiprate = 4
-            # r = game.make_action(choice(actions), skiprate)
+            skiprate = 4
+            r = game.make_action(choice(actions), skiprate)
 
             # The same could be achieved with:
             # game.set_action(choice(actions))
