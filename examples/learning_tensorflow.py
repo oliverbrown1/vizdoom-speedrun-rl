@@ -38,7 +38,7 @@ batch_size = 64
 
 # Training regime
 # 100
-test_episodes_per_epoch = 100
+test_episodes_per_epoch = 5
 
 # Other parameters
 frames_per_action = 4
@@ -49,10 +49,11 @@ episodes_to_watch = 10
 save_model = True
 load = False
 skip_learning = False
-watch = True 
+watch = True
 
 # Configuration file path
-config_file_path = os.path.join(vzd.scenarios_path, "my_way_home.cfg")
+# config_file_path = os.path.join(vzd.scenarios_path, "basic_scenario.cfg")
+config_file_path = "./3rd-year-project/maps/basic_scenario.cfg"
 model_savefolder = "./3rd-year-project/models/dqn-model.keras"
 # os.makedirs(model_savefolder, exist_ok=True)
 
