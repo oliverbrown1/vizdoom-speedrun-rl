@@ -7,7 +7,7 @@ import itertools as it
 import os
 from collections import deque
 from random import sample
-from time import sleep, time
+from time import sleep, timepytho
 
 import numpy as np
 import skimage.color
