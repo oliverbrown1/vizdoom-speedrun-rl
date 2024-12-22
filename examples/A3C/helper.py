@@ -1,13 +1,17 @@
 import numpy as np
+print("test")
 import random
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import scipy.misc
+import scipy.signal
 import os
 import csv
 import itertools
 import tensorflow.contrib.slim as slim  # type: ignore
 import moviepy.editor as mpy
+from PIL import Image
+print("done")
 
 #This is a simple function to reshape our game frames.
 def processState(state1):
@@ -113,7 +117,10 @@ def update_target_graph(from_scope,to_scope):
 # Processes Doom screen image to produce cropped and resized image. 
 def process_frame(frame):
     s = frame[10:-10,30:-30]
-    s = scipy.misc.imresize(s,[84,84])
+    # s = scipy.misc.imresize(s,[84,84])
+    s = Image.fromarray(s)  # Convert the numpy array to a PIL image
+    s = s.resize((84, 84))  # Resize using Pillow's resize method
+    s = np.array(s)  # Convert back to numpy array
     s = np.reshape(s,[np.prod(s.shape)]) / 255.0
     return s
 

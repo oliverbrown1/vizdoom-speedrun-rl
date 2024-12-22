@@ -20,7 +20,10 @@ class Worker():
         self.update_local_ops = update_target_graph('global',self.name)        
         
         #The Below code is related to setting up the Doom environment
-        game.set_doom_scenario_path("basic.wad") #This corresponds to the simple task we will pose our agent
+        import os
+        current_working_directory = os.getcwd()
+        print(current_working_directory)
+        game.set_doom_scenario_path("./maps/basic_scenario.wad") #This corresponds to the simple task we will pose our agent
         game.set_doom_map("map01")
         game.set_screen_resolution(ScreenResolution.RES_160X120)
         game.set_screen_format(ScreenFormat.GRAY8)
@@ -29,17 +32,17 @@ class Worker():
         game.set_render_weapon(True)
         game.set_render_decals(False)
         game.set_render_particles(False)
-        game.add_available_button(Button.MOVE_LEFT)
-        game.add_available_button(Button.MOVE_RIGHT)
-        game.add_available_button(Button.ATTACK)
+        game.add_available_button(Button.TURN_LEFT)
+        game.add_available_button(Button.MOVE_FORWARD)
+        game.add_available_button(Button.TURN_RIGHT)
         game.add_available_game_variable(GameVariable.AMMO2)
         game.add_available_game_variable(GameVariable.POSITION_X)
         game.add_available_game_variable(GameVariable.POSITION_Y)
-        game.set_episode_timeout(300)
+        game.set_episode_timeout(1500)
         game.set_episode_start_time(10)
         game.set_window_visible(False)
         game.set_sound_enabled(False)
-        game.set_living_reward(-1)
+        game.set_living_reward(-0.1)
         game.set_mode(Mode.PLAYER)
         game.init()
         self.actions = self.actions = np.identity(a_size,dtype=bool).tolist()
@@ -87,6 +90,8 @@ class Worker():
         print ("Starting worker " + str(self.number))
         with sess.as_default(), sess.graph.as_default():                 
             while not coord.should_stop():
+                if self.name == 'worker_0':
+                    print(episode_count)
                 sess.run(self.update_local_ops)
                 episode_buffer = []
                 episode_values = []
@@ -121,7 +126,6 @@ class Worker():
                         
                     episode_buffer.append([s,a,r,s1,d,v[0,0]])
                     episode_values.append(v[0,0])
-
                     episode_reward += r
                     s = s1                    
                     total_steps += 1
@@ -141,7 +145,8 @@ class Worker():
                         sess.run(self.update_local_ops)
                     if d == True:
                         break
-                                            
+
+                print(f"reward earned: {episode_reward}")                       
                 self.episode_rewards.append(episode_reward)
                 self.episode_lengths.append(episode_step_count)
                 self.episode_mean_values.append(np.mean(episode_values))
@@ -154,7 +159,8 @@ class Worker():
                 # Periodically save gifs of episodes, model parameters, and summary statistics.
                 if episode_count % 5 == 0 and episode_count != 0:
                     if self.name == 'worker_0' and episode_count % 25 == 0:
-                        time_per_step = 0.05
+                        time_per_step = 0.01
+                        # time_per_step = 0.05
                         images = np.array(episode_frames)
                         make_gif(images,'./frames/image'+str(episode_count)+'.gif',
                             duration=len(images)*time_per_step,true_image=True,salience=False)
@@ -165,7 +171,7 @@ class Worker():
                     mean_reward = np.mean(self.episode_rewards[-5:])
                     mean_length = np.mean(self.episode_lengths[-5:])
                     mean_value = np.mean(self.episode_mean_values[-5:])
-                    summary = tf.Summary()
+                    summary = tf.compat.v1.Summary()
                     summary.value.add(tag='Perf/Reward', simple_value=float(mean_reward))
                     summary.value.add(tag='Perf/Length', simple_value=float(mean_length))
                     summary.value.add(tag='Perf/Value', simple_value=float(mean_value))
