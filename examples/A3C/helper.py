@@ -118,9 +118,9 @@ def update_target_graph(from_scope,to_scope):
 def process_frame(frame):
     s = frame[10:-10,30:-30]
     # s = scipy.misc.imresize(s,[84,84])
-    s = Image.fromarray(s)  # Convert the numpy array to a PIL image
-    s = s.resize((84, 84))  # Resize using Pillow's resize method
-    s = np.array(s)  # Convert back to numpy array
+    s = Image.fromarray(s)  
+    s = s.resize((84, 84))  
+    s = np.array(s) 
     s = np.reshape(s,[np.prod(s.shape)]) / 255.0
     return s
 

@@ -13,7 +13,7 @@ class Worker():
         self.episode_rewards = []
         self.episode_lengths = []
         self.episode_mean_values = []
-        self.summary_writer = tf.summary.FileWriter("train_"+str(self.number))
+        self.summary_writer = tf.compat.v1.summary.FileWriter("train_"+str(self.number))
 
         #Create the local copy of the network and the tensorflow op to copy global paramters to local network
         self.local_AC = AC_Network(s_size,a_size,self.name,trainer)
@@ -22,30 +22,31 @@ class Worker():
         #The Below code is related to setting up the Doom environment
         import os
         current_working_directory = os.getcwd()
-        print(current_working_directory)
-        game.set_doom_scenario_path("./maps/basic_scenario.wad") #This corresponds to the simple task we will pose our agent
-        game.set_doom_map("map01")
+        # print(current_working_directory)
+        game.load_config("./maps/my_way_home.cfg")
+        # game.set_doom_scenario_path("./maps/basic_scenario.wad") #This corresponds to the simple task we will pose our agent
+        # game.set_doom_map("map01")
         game.set_screen_resolution(ScreenResolution.RES_160X120)
         game.set_screen_format(ScreenFormat.GRAY8)
-        game.set_render_hud(False)
-        game.set_render_crosshair(False)
-        game.set_render_weapon(True)
-        game.set_render_decals(False)
-        game.set_render_particles(False)
-        game.add_available_button(Button.TURN_LEFT)
-        game.add_available_button(Button.MOVE_FORWARD)
-        game.add_available_button(Button.TURN_RIGHT)
-        game.add_available_game_variable(GameVariable.AMMO2)
-        game.add_available_game_variable(GameVariable.POSITION_X)
-        game.add_available_game_variable(GameVariable.POSITION_Y)
-        game.set_episode_timeout(1500)
-        game.set_episode_start_time(10)
-        game.set_window_visible(False)
-        game.set_sound_enabled(False)
-        game.set_living_reward(-0.1)
-        game.set_mode(Mode.PLAYER)
+        # game.set_render_hud(False)
+        # game.set_render_crosshair(False)
+        # game.set_render_weapon(True)
+        # game.set_render_decals(False)
+        # game.set_render_particles(False)
+        # game.add_available_button(Button.TURN_LEFT)
+        # game.add_available_button(Button.MOVE_FORWARD)
+        # game.add_available_button(Button.TURN_RIGHT)
+        # game.add_available_game_variable(GameVariable.AMMO2)
+        # game.add_available_game_variable(GameVariable.POSITION_X)
+        # game.add_available_game_variable(GameVariable.POSITION_Y)
+        # game.set_episode_timeout(1500)
+        # game.set_episode_start_time(10)
+        # game.set_window_visible(False)
+        # game.set_sound_enabled(False)
+        # game.set_living_reward(-0.1)
+        # game.set_mode(Mode.PLAYER)
         game.init()
-        self.actions = self.actions = np.identity(a_size,dtype=bool).tolist()
+        self.actions = np.identity(a_size,dtype=bool).tolist()
         #End Doom set-up
         self.env = game
         
@@ -106,7 +107,7 @@ class Worker():
                 s = process_frame(s)
                 rnn_state = self.local_AC.state_init
                 self.batch_rnn_state = rnn_state
-                while self.env.is_episode_finished() == False:
+                while not self.env.is_episode_finished():
                     #Take an action using probabilities from policy network output.
                     a_dist,v,rnn_state = sess.run([self.local_AC.policy,self.local_AC.value,self.local_AC.state_out], 
                         feed_dict={self.local_AC.inputs:[s],
@@ -143,13 +144,21 @@ class Worker():
                         v_l,p_l,e_l,g_n,v_n = self.train(episode_buffer,sess,gamma,v1)
                         episode_buffer = []
                         sess.run(self.update_local_ops)
+                    # if episode finished
                     if d == True:
                         break
 
-                print(f"reward earned: {episode_reward}")                       
+                print(f"episode: {episode_count}, worker: {self.number} reward earned: {episode_reward}")                       
                 self.episode_rewards.append(episode_reward)
                 self.episode_lengths.append(episode_step_count)
                 self.episode_mean_values.append(np.mean(episode_values))
+
+                if episode_reward > -2:
+                        time_per_step = 0.003
+                        # time_per_step = 0.05
+                        images = np.array(episode_frames)
+                        make_gif(images,'./frames/image'+str(episode_count)+'worker'+str(self.number)+'.gif',
+                            duration=len(images)*time_per_step,true_image=True,salience=False)                
                 
                 # Update the network using the episode buffer at the end of the episode.
                 if len(episode_buffer) != 0:

@@ -5,17 +5,20 @@ from helper import *
 
 class AC_Network():
     def __init__(self,s_size,a_size,scope,trainer):
-        with tf.variable_scope(scope):
+        with tf.compat.v1.variable_scope(scope):
             #Input and visual encoding layers
-            self.inputs = tf.placeholder(shape=[None,s_size],dtype=tf.float32)
+            self.inputs = tf.compat.v1.placeholder(shape=[None,s_size],dtype=tf.float32)
             self.imageIn = tf.reshape(self.inputs,shape=[-1,84,84,1])
             self.conv1 = slim.conv2d(activation_fn=tf.nn.elu,
-                inputs=self.imageIn,num_outputs=16,
-                kernel_size=[8,8],stride=[4,4],padding='VALID')
+                inputs=self.imageIn,num_outputs=32,
+                kernel_size=[8,8],stride=[4,4],padding='SAME')
             self.conv2 = slim.conv2d(activation_fn=tf.nn.elu,
-                inputs=self.conv1,num_outputs=32,
-                kernel_size=[4,4],stride=[2,2],padding='VALID')
-            hidden = slim.fully_connected(slim.flatten(self.conv2),256,activation_fn=tf.nn.elu)
+                inputs=self.conv1,num_outputs=64,
+                kernel_size=[4,4],stride=[2,2],padding='SAME')
+            self.conv3 = slim.conv2d(activation_fn=tf.nn.elu,
+                inputs=self.conv2,num_outputs=64,
+                kernel_size=[3,3],stride=[2,2],padding='SAME')
+            hidden = slim.fully_connected(slim.flatten(self.conv3),256,activation_fn=tf.nn.elu)
             
             #Recurrent network for temporal dependencies
             lstm_cell = tf.contrib.rnn.BasicLSTMCell(256,state_is_tuple=True)
@@ -56,16 +59,16 @@ class AC_Network():
 
                 #Loss functions
                 self.value_loss = 0.5 * tf.reduce_sum(tf.square(self.target_v - tf.reshape(self.value,[-1])))
-                self.entropy = - tf.reduce_sum(self.policy * tf.log(self.policy))
-                self.policy_loss = -tf.reduce_sum(tf.log(self.responsible_outputs)*self.advantages)
-                self.loss = 0.5 * self.value_loss + self.policy_loss - self.entropy * 0.01
+                self.entropy = - tf.reduce_sum(self.policy * tf.math.log(self.policy))
+                self.policy_loss = -tf.reduce_sum(tf.math.log(self.responsible_outputs)*self.advantages)
+                self.loss = 0.5 * self.value_loss + self.policy_loss - self.entropy * 0.005
 
                 #Get gradients from local network using local losses
-                local_vars = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope)
+                local_vars = tf.compat.v1.get_collection(tf.compat.v1.GraphKeys.TRAINABLE_VARIABLES, scope)
                 self.gradients = tf.gradients(self.loss,local_vars)
-                self.var_norms = tf.global_norm(local_vars)
+                self.var_norms = tf.linalg.global_norm(local_vars)
                 grads,self.grad_norms = tf.clip_by_global_norm(self.gradients,40.0)
                 
                 #Apply local gradients to global network
-                global_vars = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, 'global')
+                global_vars = tf.compat.v1.get_collection(tf.compat.v1.GraphKeys.TRAINABLE_VARIABLES, 'global')
                 self.apply_grads = trainer.apply_gradients(zip(grads,global_vars))
