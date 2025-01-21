@@ -13,7 +13,7 @@ class Worker():
         self.episode_rewards = []
         self.episode_lengths = []
         self.episode_mean_values = []
-        self.summary_writer = tf.compat.v1.summary.FileWriter("train_"+str(self.number))
+        self.summary_writer = tf.compat.v1.summary.FileWriter("./files/train_"+str(self.number))
 
         #Create the local copy of the network and the tensorflow op to copy global paramters to local network
         self.local_AC = AC_Network(s_size,a_size,self.name,trainer)
@@ -23,28 +23,29 @@ class Worker():
         import os
         current_working_directory = os.getcwd()
         # print(current_working_directory)
-        game.load_config("./maps/my_way_home.cfg")
-        # game.set_doom_scenario_path("./maps/basic_scenario.wad") #This corresponds to the simple task we will pose our agent
-        # game.set_doom_map("map01")
+        # config_path = os.path.join(vizdoom.scenarios_path, "basic.cfg")
+        # game.load_config(config_path)
+        game.set_doom_scenario_path("../../maps/basic.wad")
+        game.set_doom_map("map01")
         game.set_screen_resolution(ScreenResolution.RES_160X120)
         game.set_screen_format(ScreenFormat.GRAY8)
-        # game.set_render_hud(False)
-        # game.set_render_crosshair(False)
-        # game.set_render_weapon(True)
-        # game.set_render_decals(False)
-        # game.set_render_particles(False)
-        # game.add_available_button(Button.TURN_LEFT)
-        # game.add_available_button(Button.MOVE_FORWARD)
-        # game.add_available_button(Button.TURN_RIGHT)
-        # game.add_available_game_variable(GameVariable.AMMO2)
-        # game.add_available_game_variable(GameVariable.POSITION_X)
-        # game.add_available_game_variable(GameVariable.POSITION_Y)
-        # game.set_episode_timeout(1500)
-        # game.set_episode_start_time(10)
-        # game.set_window_visible(False)
-        # game.set_sound_enabled(False)
-        # game.set_living_reward(-0.1)
-        # game.set_mode(Mode.PLAYER)
+        game.set_render_hud(False)
+        game.set_render_crosshair(False)
+        game.set_render_weapon(True)
+        game.set_render_decals(False)
+        game.set_render_particles(False)
+        game.add_available_button(Button.MOVE_LEFT)
+        game.add_available_button(Button.MOVE_RIGHT)
+        game.add_available_button(Button.ATTACK)
+        game.add_available_game_variable(GameVariable.AMMO2)
+        game.add_available_game_variable(GameVariable.POSITION_X)
+        game.add_available_game_variable(GameVariable.POSITION_Y)
+        game.set_episode_timeout(300)
+        game.set_episode_start_time(10)
+        game.set_window_visible(False)
+        game.set_sound_enabled(False)
+        game.set_living_reward(-0.1)
+        game.set_mode(Mode.PLAYER)
         game.init()
         self.actions = np.identity(a_size,dtype=bool).tolist()
         #End Doom set-up
@@ -92,7 +93,7 @@ class Worker():
         with sess.as_default(), sess.graph.as_default():                 
             while not coord.should_stop():
                 if self.name == 'worker_0':
-                    print(episode_count)
+                    print(f"Worker 0 on episode {episode_count}")
                 sess.run(self.update_local_ops)
                 episode_buffer = []
                 episode_values = []
@@ -116,7 +117,7 @@ class Worker():
                     a = np.random.choice(a_dist[0],p=a_dist[0])
                     a = np.argmax(a_dist == a)
 
-                    r = self.env.make_action(self.actions[a]) / 100.0
+                    r = self.env.make_action(self.actions[a]) / 100
                     d = self.env.is_episode_finished()
                     if d == False:
                         s1 = self.env.get_state().screen_buffer
@@ -153,12 +154,12 @@ class Worker():
                 self.episode_lengths.append(episode_step_count)
                 self.episode_mean_values.append(np.mean(episode_values))
 
-                if episode_reward > -2:
-                        time_per_step = 0.003
-                        # time_per_step = 0.05
-                        images = np.array(episode_frames)
-                        make_gif(images,'./frames/image'+str(episode_count)+'worker'+str(self.number)+'.gif',
-                            duration=len(images)*time_per_step,true_image=True,salience=False)                
+                # if episode_reward > 0:
+                #         time_per_step = 0.005
+                #         # time_per_step = 0.05
+                #         images = np.array(episode_frames)
+                #         make_gif(images,'./frames/image'+str(episode_count)+'worker'+str(self.number)+'.gif',
+                #             duration=len(images)*time_per_step,true_image=True,salience=False)                
                 
                 # Update the network using the episode buffer at the end of the episode.
                 if len(episode_buffer) != 0:
@@ -168,10 +169,10 @@ class Worker():
                 # Periodically save gifs of episodes, model parameters, and summary statistics.
                 if episode_count % 5 == 0 and episode_count != 0:
                     if self.name == 'worker_0' and episode_count % 25 == 0:
-                        time_per_step = 0.01
+                        time_per_step = 0.005
                         # time_per_step = 0.05
                         images = np.array(episode_frames)
-                        make_gif(images,'./frames/image'+str(episode_count)+'.gif',
+                        make_gif(images,'./files/frames/image'+str(episode_count)+'.gif',
                             duration=len(images)*time_per_step,true_image=True,salience=False)
                     if episode_count % 250 == 0 and self.name == 'worker_0':
                         saver.save(sess,self.model_path+'/model-'+str(episode_count)+'.cptk')
@@ -181,9 +182,9 @@ class Worker():
                     mean_length = np.mean(self.episode_lengths[-5:])
                     mean_value = np.mean(self.episode_mean_values[-5:])
                     summary = tf.compat.v1.Summary()
-                    summary.value.add(tag='Perf/Reward', simple_value=float(mean_reward))
-                    summary.value.add(tag='Perf/Length', simple_value=float(mean_length))
-                    summary.value.add(tag='Perf/Value', simple_value=float(mean_value))
+                    summary.value.add(tag='Perf/Mean Reward', simple_value=float(mean_reward))
+                    summary.value.add(tag='Perf/Mean Episode Length', simple_value=float(mean_length))
+                    summary.value.add(tag='Perf/Mean Value', simple_value=float(mean_value))
                     summary.value.add(tag='Losses/Value Loss', simple_value=float(v_l))
                     summary.value.add(tag='Losses/Policy Loss', simple_value=float(p_l))
                     summary.value.add(tag='Losses/Entropy', simple_value=float(e_l))

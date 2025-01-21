@@ -50,10 +50,10 @@ class AC_Network():
             
             #Only the worker network need ops for loss functions and gradient updating.
             if scope != 'global':
-                self.actions = tf.placeholder(shape=[None],dtype=tf.int32)
+                self.actions = tf.compat.v1.placeholder(shape=[None],dtype=tf.int32)
                 self.actions_onehot = tf.one_hot(self.actions,a_size,dtype=tf.float32)
-                self.target_v = tf.placeholder(shape=[None],dtype=tf.float32)
-                self.advantages = tf.placeholder(shape=[None],dtype=tf.float32)
+                self.target_v = tf.compat.v1.placeholder(shape=[None],dtype=tf.float32)
+                self.advantages = tf.compat.v1.placeholder(shape=[None],dtype=tf.float32)
 
                 self.responsible_outputs = tf.reduce_sum(self.policy * self.actions_onehot, [1])
 
