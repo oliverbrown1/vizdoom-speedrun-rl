@@ -25,11 +25,11 @@ tf.compat.v1.enable_eager_execution()
 tf.executing_eagerly()
 
 # Q-learning settings
-learning_rate = 0.00025
+learning_rate = 0.001
 discount_factor = 0.99
 replay_memory_size = 10000
 num_train_epochs = 10
-learning_steps_per_epoch = 50000
+learning_steps_per_epoch = 5000
 target_net_update_steps = 1000
 
 # NN learning settings
@@ -39,7 +39,7 @@ batch_size = 64
 test_episodes_per_epoch = 100
 
 # Other parameters
-frames_per_action = 12
+frames_per_action = 4
 resolution = (30, 45)
 episodes_to_watch = 20
 
@@ -49,7 +49,8 @@ skip_learning = False
 watch = True
 
 # Configuration file path
-config_file_path = "../../maps/basic.cfg"
+config_file_path = "../../maps/basic_scenario.cfg"
+total_possible_actions = 9
 model_savefolder = "./model"
 summary_folder="./files"
 
@@ -85,7 +86,7 @@ def initialize_game():
 
 class DQNAgent:
     def __init__(
-        self, num_actions=8, epsilon=1, epsilon_min=0.1, epsilon_decay=0.9995, load=load
+        self, num_actions=total_possible_actions, epsilon=1, epsilon_min=0.1, epsilon_decay=0.9995, load=load
     ):
         self.epsilon = epsilon
         self.epsilon_min = epsilon_min
@@ -207,7 +208,7 @@ def run(agent, game, replay_memory):
                     mean_reward = np.mean(train_scores[-5:])
                     print(mean_reward)
                     with summary_writer.as_default():
-                        tf.contrib.summary.scalar('Mean Reward', mean_reward, step=global_episodes)
+                        tf.summary.scalar('Mean Reward', mean_reward, step=global_episodes)
                         summary_writer.flush()  
 
             replay_memory.append((screen_buf, action, reward, next_screen_buf, done))
@@ -253,6 +254,21 @@ def test(test_episodes_per_epoch, game, agent):
         "max: %.1f" % test_scores.max(),
     )
 
+def get_actions():
+    actions = []
+    # m_left_right = [[True, False], [False, True], [False, False]]  # move left and move right
+    # attack = [[True], [False]]
+    # m_forward_backward = [[True, False], [False, True], [False, False]]  # move forward and backward
+    move_with_speed = [[True, False], [True, True], [False, False]]
+    t_left_right = [[True, False], [False, True], [False, False]]  # turn left and turn right
+
+    # for i in attack:
+    for j in move_with_speed:
+        # for k in m_forward_backward:
+            for l in t_left_right:
+                actions.append(j+l)
+    return actions
+
 
 class DQN(Model):
     def __init__(self, num_actions):
@@ -295,10 +311,13 @@ if __name__ == "__main__":
     agent = DQNAgent()
     game = initialize_game()
     replay_memory = deque(maxlen=replay_memory_size)
-    summary_writer = tf.contrib.summary.create_file_writer(summary_folder)
+    summary_writer = tf.summary.create_file_writer(summary_folder)
 
     n = game.get_available_buttons_size()
-    actions = [list(a) for a in it.product([0, 1], repeat=n)]
+    # actions = [list(a) for a in it.product([0, 1], repeat=n)]
+    actions = get_actions()
+    print(actions)
+    # time.sleep(5)
 
     with tf.device(DEVICE):
 
