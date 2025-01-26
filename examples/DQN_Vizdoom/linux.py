@@ -20,7 +20,8 @@ from tqdm import trange
 
 import vizdoom as vzd
 
-
+tf.config.threading.set_intra_op_parallelism_threads(20)
+tf.config.threading.set_inter_op_parallelism_threads(20)
 tf.compat.v1.enable_eager_execution()
 tf.executing_eagerly()
 
@@ -73,7 +74,7 @@ def initialize_game():
     print("Initializing doom...")
     game = vzd.DoomGame()
     game.load_config(config_file_path)
-    game.set_window_visible(True)
+    game.set_window_visible(False)
     game.set_mode(vzd.Mode.PLAYER)
     game.set_screen_format(vzd.ScreenFormat.GRAY8)
     game.set_screen_resolution(vzd.ScreenResolution.RES_640X480)
@@ -207,7 +208,7 @@ def run(agent, game, replay_memory):
                     mean_reward = np.mean(train_scores[-5:])
                     print(mean_reward)
                     with summary_writer.as_default():
-                        tf.contrib.summary.scalar('Mean Reward', mean_reward, step=global_episodes)
+                        tf.summary.scalar('Mean Reward', mean_reward, step=global_episodes)
                         summary_writer.flush()  
 
             replay_memory.append((screen_buf, action, reward, next_screen_buf, done))
@@ -295,7 +296,7 @@ if __name__ == "__main__":
     agent = DQNAgent()
     game = initialize_game()
     replay_memory = deque(maxlen=replay_memory_size)
-    summary_writer = tf.contrib.summary.create_file_writer(summary_folder)
+    summary_writer = tf.summary.create_file_writer(summary_folder)
 
     n = game.get_available_buttons_size()
     actions = [list(a) for a in it.product([0, 1], repeat=n)]

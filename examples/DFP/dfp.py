@@ -17,6 +17,7 @@ from keras.layers.core import Dense, Dropout, Activation, Flatten
 from keras.layers import Convolution2D, Dense, Flatten, merge, MaxPooling2D, Input, AveragePooling2D, Lambda, Activation, Embedding
 from keras.optimizers import SGD, Adam, rmsprop
 from keras import backend as K
+from keras.backend import clear_session
 
 from vizdoom import DoomGame, ScreenResolution
 from vizdoom import *
@@ -94,6 +95,7 @@ class DFPAgent:
             self.epsilon -= (self.initial_epsilon - self.final_epsilon) / self.explore
 
         if len(self.memory) > self.max_memory:
+            print("memory is running out")
             self.memory.popleft()
 
     # Pick samples randomly from replay memory (with batch_size)
@@ -163,7 +165,7 @@ if __name__ == "__main__":
     # enabling sound bugs it out for some reason
     game.set_sound_enabled(False)
     game.set_screen_resolution(ScreenResolution.RES_640X480)
-    game.set_window_visible(True)
+    game.set_window_visible(False)
     game.init()
 
     game.new_episode()
@@ -220,6 +222,7 @@ if __name__ == "__main__":
     life_buffer = []
 
     while not game.is_episode_finished():
+        
 
         loss = 0
         r_t = 0
@@ -295,6 +298,7 @@ if __name__ == "__main__":
             state = "explore"
         else:
             state = "train"
+        
 
         if (is_terminated):
             print("TIME", t, "/ GAME", GAME, "/ STATE", state, \
@@ -304,7 +308,10 @@ if __name__ == "__main__":
             medkit = 0
             poison = 0
             reward_list.append(r_t)
-            loss_list.append(loss)
+            if isinstance(loss, int):
+                loss_list.append(loss)
+            else:
+                loss_list.append(np.mean(loss))
 
             # Save Agent's Performance Statistics
             if GAME % 5 == 0:
