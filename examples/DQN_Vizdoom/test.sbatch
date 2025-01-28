@@ -16,7 +16,7 @@ source /etc/profile.d/conda.sh
 
 ## Execute your program(s) ##
 # python3 -c "print('hello')"
-python learning_tensorflow.py 
+python dqn.py 
 ## Other examples:
 ## A Python program
 # python3 my_program.py

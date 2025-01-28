@@ -27,6 +27,8 @@ import tensorflow as tf
 
 from networks import Networks
 
+tf.config.threading.set_intra_op_parallelism_threads(20)
+tf.config.threading.set_inter_op_parallelism_threads(20)
 
 def preprocessImg(img, size):
 
@@ -154,9 +156,9 @@ class DFPAgent:
 if __name__ == "__main__":
 
     # Avoid Tensorflow eats up GPU memory
-    config = tf.ConfigProto()
+    config = tf.compat.v1.ConfigProto()
     config.gpu_options.allow_growth = True
-    sess = tf.Session(config=config)
+    sess = tf.compat.v1.Session(config=config)
     K.set_session(sess)
     summary_writer = tf.compat.v1.summary.FileWriter("./summaries")
 

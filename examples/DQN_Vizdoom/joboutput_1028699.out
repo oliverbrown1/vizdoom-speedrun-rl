@@ -1,0 +1,29 @@
+No GPU available
+Initializing doom...
+Doom initialized.
+[[True, False, True, False], [True, False, False, True], [True, False, False, False], [True, True, True, False], [True, True, False, True], [True, True, False, False], [False, False, True, False], [False, False, False, True], [False, False, False, False]]
+Starting the training!
+
+Epoch 1
+-------
+logging
+-14.999999999999854
+logging
+-14.999999999999854
+Results: mean: -15.0±0.0, min: -15.0, max: -15.0,
+
+Testing...
+Results: mean: -6.4±29.1, min: -15.0 max: 98.2
+Total elapsed time: 23.53 minutes
+
+Epoch 2
+-------
+logging
+-14.999999999999856
+logging
+30.436000000000085
+logging
+48.95600000000006
+Results: mean: 19.2±50.7, min: -15.0, max: 98.7,
+
+Testing...
