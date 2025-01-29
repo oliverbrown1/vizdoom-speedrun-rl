@@ -19,8 +19,7 @@ from keras.optimizers import SGD, Adam, rmsprop
 from keras import backend as K
 from keras.backend import clear_session
 
-from vizdoom import DoomGame, ScreenResolution
-from vizdoom import *
+import vizdoom as vzd
 import itertools as it
 from time import sleep
 import tensorflow as tf
@@ -162,11 +161,11 @@ if __name__ == "__main__":
     K.set_session(sess)
     summary_writer = tf.compat.v1.summary.FileWriter("./summaries")
 
-    game = DoomGame()
+    game = vzd.DoomGame()
     game.load_config("../../maps/health_gathering.cfg")
     # enabling sound bugs it out for some reason
     game.set_sound_enabled(False)
-    game.set_screen_resolution(ScreenResolution.RES_640X480)
+    game.set_screen_resolution(vzd.ScreenResolution.RES_640X480)
     game.set_window_visible(False)
     game.init()
 
