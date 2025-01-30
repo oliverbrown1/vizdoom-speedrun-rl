@@ -43,6 +43,7 @@ class DQN(object):
 
         self.game = vzd.DoomGame()
         self.game.load_config("../../maps/basic.cfg")
+        self.game.set_window_visible(False)
         self.game.init()
 
         self.cfg = cfg

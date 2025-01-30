@@ -18,6 +18,7 @@ from tensorflow.keras.layers import BatchNormalization, Conv2D, Dense, Flatten, 
 from tensorflow.keras.optimizers import SGD
 from tqdm import trange
 from tensorflow.python.profiler import profiler_v2 as profiler
+import moviepy as mpy
 
 import vizdoom as vzd
 
@@ -33,6 +34,7 @@ replay_memory_size = 10000
 num_train_epochs = 10
 learning_steps_per_epoch = 5000
 target_net_update_steps = 1000
+total_episodes = 5000
 
 # NN learning settings
 # batch_size = 64
@@ -55,7 +57,8 @@ watch = False
 config_file_path = "../../maps/basic.cfg"
 total_possible_actions = 3
 model_savefolder = "./model"
-summary_folder="./files"
+summary_folder="./files2"
+frames_folder="./frames"
 
 if len(tf.config.experimental.list_physical_devices("GPU")) > 0:
     print("GPU available")
@@ -86,6 +89,37 @@ def initialize_game():
 
     return game
 
+# This code allows gifs to be saved of the training episode for use in the Control Center.
+def make_gif(images, fname, duration=2, true_image=False,salience=False,salIMGS=None):
+  
+  def make_frame(t):
+    try:
+      x = images[int(len(images)/duration*t)]
+    except:
+      x = images[-1]
+
+    if true_image:
+      return x.astype(np.uint8)
+    else:
+      return ((x+1)/2*255).astype(np.uint8)
+  
+  def make_mask(t):
+    try:
+      x = salIMGS[int(len(salIMGS)/duration*t)]
+    except:
+      x = salIMGS[-1]
+    return x
+
+  clip = mpy.VideoClip(make_frame, duration=duration)
+  if salience == True:
+    mask = mpy.VideoClip(make_mask, ismask=True,duration= duration)
+    clipB = clip.set_mask(mask)
+    clipB = clip.set_opacity(0)
+    mask = mask.set_opacity(0.1)
+    mask.write_gif(fname, fps = len(images) / duration)
+    #clipB.write_gif(fname, fps = len(images) / duration,verbose=False)
+  else:
+    clip.write_gif(fname, fps = len(images) / duration)
 
 class DQNAgent:
     def __init__(
@@ -183,28 +217,33 @@ def get_samples(memory):
 def run(agent, game, replay_memory):
     time_start = time()
     global_episodes = 0
-    for episode in range(num_train_epochs):
-        train_scores = []
+    global_steps = 0
+    train_scores = []
+    for episode in range(total_episodes):
+    # for episode in range(num_train_epochs):
+        episode_frames = []
         print("\nEpoch %d\n-------" % (episode + 1))
 
         game.new_episode()
 
-        for i in trange(learning_steps_per_epoch, leave=False):
+        # for i in trange(learning_steps_per_epoch, leave=False):
+
+
+        while not game.is_episode_finished():
+
             state = game.get_state()
+            episode_frames.append(state.screen_buffer)
             screen_buf = preprocess(state.screen_buffer)
             action = agent.choose_action(screen_buf)
             reward = game.make_action(actions[action], frames_per_action)
-            done = game.is_episode_finished()
+            global_steps += 1
 
+            done= game.is_episode_finished()
             if not done:
                 next_screen_buf = preprocess(game.get_state().screen_buffer)
             else:
                 next_screen_buf = tf.zeros(shape=screen_buf.shape)
-
-            if done:
                 train_scores.append(game.get_total_reward())
-
-                game.new_episode()
                 global_episodes += 1
                 if (global_episodes % 5) == 0:
                     print("logging")
@@ -213,27 +252,35 @@ def run(agent, game, replay_memory):
                     with summary_writer.as_default():
                         tf.summary.scalar('Mean Reward', mean_reward, step=global_episodes)
                         summary_writer.flush()  
+                if global_episodes % 5 == 0:
+                        time_per_step = 0.005
+                        images = np.array(episode_frames)
+                        print(len(images))
+                        # print("hi")
+                        make_gif(images,frames_folder+"/f"+str(global_episodes)+'.gif',
+                            duration=len(images)*time_per_step,true_image=True,salience=False)
 
             replay_memory.append((screen_buf, action, reward, next_screen_buf, done))
 
-            if i >= batch_size:
+
+            if global_steps >= batch_size:
                 agent.train_dqn(get_samples(replay_memory))
 
-            if (i % target_net_update_steps) == 0:
+            if (global_steps % target_net_update_steps) == 0:
                 agent.update_target_net()
 
 
-        train_scores = np.array(train_scores)
-        print(
-            "Results: mean: {:.1f}±{:.1f},".format(
-                train_scores.mean(), train_scores.std()
-            ),
-            "min: %.1f," % train_scores.min(),
-            "max: %.1f," % train_scores.max(),
-        )
+        # train_scores = np.array(train_scores)
+        # print(
+        #     "Results: mean: {:.1f}±{:.1f},".format(
+        #         train_scores.mean(), train_scores.std()
+        #     ),
+        #     "min: %.1f," % train_scores.min(),
+        #     "max: %.1f," % train_scores.max(),
+        # )
 
-        test(test_episodes_per_epoch, game, agent)
-        print("Total elapsed time: %.2f minutes" % ((time() - time_start) / 60.0))
+    test(test_episodes_per_epoch, game, agent)
+    print("Total elapsed time: %.2f minutes" % ((time() - time_start) / 60.0))
 
 
 def test(test_episodes_per_epoch, game, agent):
@@ -315,7 +362,7 @@ if __name__ == "__main__":
     game = initialize_game()
     replay_memory = deque(maxlen=replay_memory_size)
     summary_writer = tf.summary.create_file_writer(summary_folder)
-    profiler.start(logdir="./performance")
+    # profiler.start(logdir="./performance")
 
     n = game.get_available_buttons_size()
     # actions = [list(a) for a in it.product([0, 1], repeat=n)]
@@ -330,7 +377,7 @@ if __name__ == "__main__":
             print("Starting the training!")
 
             run(agent, game, replay_memory)
-            profiler.stop()
+            # profiler.stop()
 
             game.close()
             print("======================================")

@@ -9,6 +9,7 @@ from random import choice
 import numpy as np
 from collections import deque
 import time
+import os
 
 import json
 from keras.models import model_from_json
@@ -287,9 +288,9 @@ if __name__ == "__main__":
         t += 1
 
         # save progress every 10000 iterations
-        if t % 10000 == 0:
-            print("Now we save model")
-            agent.model.save_weights("models/dfp.h5", overwrite=True)
+        # if t % 10000 == 0:
+        #     print("Now we save model")
+        #     agent.model.save_weights("models/dfp.h5", overwrite=True)
 
         # print info
         state = ""
