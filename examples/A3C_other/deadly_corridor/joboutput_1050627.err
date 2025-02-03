@@ -1,0 +1,136 @@
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+WARNING:tensorflow:From deadly_corridor.py:96: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From deadly_corridor.py:39: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other/deadly_corridor/network.py:20: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+WARNING:tensorflow:From /dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other/deadly_corridor/network.py:25: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+WARNING:tensorflow:From /dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other/deadly_corridor/network.py:26: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+WARNING:tensorflow:From /dcs/22/u2256152/.conda/envs/py37/lib/python3.7/site-packages/tensorflow_core/contrib/layers/python/layers/layers.py:1057: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+WARNING:tensorflow:From /dcs/22/u2256152/.conda/envs/py37/lib/python3.7/site-packages/tensorflow_core/contrib/layers/python/layers/layers.py:1634: flatten (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.flatten instead.
+WARNING:tensorflow:From /dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other/deadly_corridor/network.py:55: The name tf.log is deprecated. Please use tf.math.log instead.
+
+WARNING:tensorflow:From /dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other/deadly_corridor/network.py:61: The name tf.get_collection is deprecated. Please use tf.compat.v1.get_collection instead.
+
+WARNING:tensorflow:From /dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other/deadly_corridor/network.py:61: The name tf.GraphKeys is deprecated. Please use tf.compat.v1.GraphKeys instead.
+
+WARNING:tensorflow:From /dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other/deadly_corridor/network.py:63: The name tf.global_norm is deprecated. Please use tf.linalg.global_norm instead.
+
+WARNING:tensorflow:From /dcs/22/u2256152/.conda/envs/py37/lib/python3.7/site-packages/tensorflow_core/python/ops/clip_ops.py:301: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+AL lib: (WW) alc_initconfig: Failed to initialize backend "pulse"
+AL lib: (WW) alc_initconfig: Failed to initialize backend "pulse"
+AL lib: (WW) alc_initconfig: Failed to initialize backend "pulse"
+AL lib: (WW) alc_initconfig: Failed to initialize backend "pulse"
+AL lib: (WW) alc_initconfig: Failed to initialize backend "pulse"
+AL lib: (WW) alc_initconfig: Failed to initialize backend "pulse"
+AL lib: (WW) alc_initconfig: Failed to initialize backend "pulse"
+AL lib: (WW) alc_initconfig: Failed to initialize backend "pulse"
+WARNING:tensorflow:From deadly_corridor.py:53: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From deadly_corridor.py:55: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2025-02-02 23:22:17.790360: I tensorflow/core/platform/cpu_feature_guard.cc:145] This TensorFlow binary is optimized with Intel(R) MKL-DNN to use the following CPU instructions in performance critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in non-MKL-DNN operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-02-02 23:22:17.874065: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2600130000 Hz
+2025-02-02 23:22:17.876249: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x31363f0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2025-02-02 23:22:17.876276: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+OMP: Info #155: KMP_AFFINITY: Initial OS proc set respected: 0-9,20-29
+OMP: Info #216: KMP_AFFINITY: decoding x2APIC ids.
+OMP: Info #157: KMP_AFFINITY: 20 available OS procs
+OMP: Info #158: KMP_AFFINITY: Uniform topology
+OMP: Info #287: KMP_AFFINITY: topology layer "LL cache" is equivalent to "socket".
+OMP: Info #287: KMP_AFFINITY: topology layer "L3 cache" is equivalent to "socket".
+OMP: Info #287: KMP_AFFINITY: topology layer "L2 cache" is equivalent to "core".
+OMP: Info #287: KMP_AFFINITY: topology layer "L1 cache" is equivalent to "core".
+OMP: Info #192: KMP_AFFINITY: 1 socket x 10 cores/socket x 2 threads/core (10 total cores)
+OMP: Info #218: KMP_AFFINITY: OS proc to physical thread map:
+OMP: Info #172: KMP_AFFINITY: OS proc 0 maps to socket 0 core 0 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 20 maps to socket 0 core 0 thread 1 
+OMP: Info #172: KMP_AFFINITY: OS proc 1 maps to socket 0 core 1 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 21 maps to socket 0 core 1 thread 1 
+OMP: Info #172: KMP_AFFINITY: OS proc 2 maps to socket 0 core 2 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 22 maps to socket 0 core 2 thread 1 
+OMP: Info #172: KMP_AFFINITY: OS proc 3 maps to socket 0 core 3 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 23 maps to socket 0 core 3 thread 1 
+OMP: Info #172: KMP_AFFINITY: OS proc 4 maps to socket 0 core 4 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 24 maps to socket 0 core 4 thread 1 
+OMP: Info #172: KMP_AFFINITY: OS proc 5 maps to socket 0 core 8 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 25 maps to socket 0 core 8 thread 1 
+OMP: Info #172: KMP_AFFINITY: OS proc 6 maps to socket 0 core 9 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 26 maps to socket 0 core 9 thread 1 
+OMP: Info #172: KMP_AFFINITY: OS proc 7 maps to socket 0 core 10 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 27 maps to socket 0 core 10 thread 1 
+OMP: Info #172: KMP_AFFINITY: OS proc 8 maps to socket 0 core 11 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 28 maps to socket 0 core 11 thread 1 
+OMP: Info #172: KMP_AFFINITY: OS proc 9 maps to socket 0 core 12 thread 0 
+OMP: Info #172: KMP_AFFINITY: OS proc 29 maps to socket 0 core 12 thread 1 
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385439 thread 0 bound to OS proc set 0
+2025-02-02 23:22:17.879386: I tensorflow/core/common_runtime/process_util.cc:115] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
+WARNING:tensorflow:From deadly_corridor.py:62: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385560 thread 2 bound to OS proc set 2
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385564 thread 3 bound to OS proc set 3
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385565 thread 4 bound to OS proc set 4
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385566 thread 5 bound to OS proc set 5
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385567 thread 6 bound to OS proc set 6
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385568 thread 7 bound to OS proc set 7
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385569 thread 8 bound to OS proc set 8
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385570 thread 9 bound to OS proc set 9
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385571 thread 10 bound to OS proc set 20
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385572 thread 11 bound to OS proc set 21
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385573 thread 12 bound to OS proc set 22
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385574 thread 13 bound to OS proc set 23
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385575 thread 14 bound to OS proc set 24
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385576 thread 15 bound to OS proc set 25
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385577 thread 16 bound to OS proc set 26
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385578 thread 17 bound to OS proc set 27
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385579 thread 18 bound to OS proc set 28
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385581 thread 20 bound to OS proc set 0
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385580 thread 19 bound to OS proc set 29
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385582 thread 21 bound to OS proc set 1
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385559 thread 22 bound to OS proc set 2
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385585 thread 23 bound to OS proc set 3
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385586 thread 24 bound to OS proc set 4
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385587 thread 25 bound to OS proc set 5
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385588 thread 26 bound to OS proc set 6
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385590 thread 28 bound to OS proc set 8
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385589 thread 27 bound to OS proc set 7
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385591 thread 29 bound to OS proc set 9
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385592 thread 30 bound to OS proc set 20
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385593 thread 31 bound to OS proc set 21
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385594 thread 32 bound to OS proc set 22
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385595 thread 33 bound to OS proc set 23
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385596 thread 34 bound to OS proc set 24
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385597 thread 35 bound to OS proc set 25
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385598 thread 36 bound to OS proc set 26
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385599 thread 37 bound to OS proc set 27
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385600 thread 38 bound to OS proc set 28
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385601 thread 39 bound to OS proc set 29
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385602 thread 40 bound to OS proc set 0
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385603 thread 41 bound to OS proc set 1
+OMP: Warning #191: Forking a process while a parallel region is active is potentially unsafe.
+OMP: Warning #191: Forking a process while a parallel region is active is potentially unsafe.
+OMP: Info #254: KMP_AFFINITY: pid 385439 tid 385563 thread 1 bound to OS proc set 1
+ALSA lib pulse.c:243:(pulse_connect) PulseAudio: Unable to connect: Connection refused
+
+ALSA lib pulse.c:243:(pulse_connect) PulseAudio: Unable to connect: Connection refused
+
+/dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other/deadly_corridor/agent.py:110: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray.
+  rollout = np.array(rollout)
+t:   0%|          | 0/999 [00:00<?, ?it/s, now=None]t:  32%|███▏      | 315/999 [00:00<00:00, 3145.16it/s, now=None]t:  63%|██████▎   | 631/999 [00:00<00:00, 3149.74it/s, now=None]t:  95%|█████████▍| 947/999 [00:00<00:00, 3150.29it/s, now=None]                                                                t:   0%|          | 0/149 [00:00<?, ?it/s, now=None]                                                    t:   0%|          | 0/117 [00:00<?, ?it/s, now=None]                                                    t:   0%|          | 0/79 [00:00<?, ?it/s, now=None]                                                   t:   0%|          | 0/57 [00:00<?, ?it/s, now=None]                                                   

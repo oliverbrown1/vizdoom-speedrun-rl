@@ -40,10 +40,12 @@ class Agent(object):
         self.name = "worker_" + str(name)
         self.number = name
 
+        self.global_step_count = 0
         self.episode_reward = []
+        self.episode_step_counts = []
         self.episode_episode_total_pickes = []
-        self.episode_lengths = []
-        self.episode_mean_values = []
+        # self.episode_lengths = []
+        # self.episode_mean_values = []
         # self.episode_health = []
         # self.episode_kills = []
 
@@ -55,7 +57,7 @@ class Agent(object):
             self.global_episodes = global_episodes
             self.increment = self.global_episodes.assign_add(1)
             self.local_AC_network = network.ACNetwork(self.name, optimizer, play=play, shape=cfg.new_img_dim)
-            self.summary_writer = tf.summary.FileWriter("./files/summaries/agent_%s" % str(self.number))
+            self.summary_writer = tf.compat.v1.summary.FileWriter(f"./{cfg.filepath}/summaries/agent_%s" % str(self.number))
             self.update_local_ops = tf.group(*utils.update_target_graph('global', self.name))
         else:
             self.local_AC_network = network.ACNetwork(self.name, optimizer, play=play, shape=cfg.new_img_dim)
@@ -92,9 +94,9 @@ class Agent(object):
         # game.add_available_game_variable(GameVariable.USER1)
         game.set_episode_timeout(2000)
         game.set_episode_start_time(10)
-        game.set_window_visible(play)
+        game.set_window_visible(False)
         game.set_sound_enabled(False)
-        game.set_living_reward(-0.001)
+        game.set_living_reward(cfg.living_reward)
         game.set_mode(Mode.PLAYER)
         if play:
             # game.add_game_args("+viz_render_all 1")
@@ -174,7 +176,8 @@ class Agent(object):
                     # get a action_index from a_dist in self.local_AC.policy
                     a_index = self.choose_action_index(a_dist[0], deterministic=False)
                     # make an action
-                    move_reward = self.env.make_action(self.actions[a_index])
+                    move_reward = self.env.make_action(self.actions[a_index], cfg.frameskip)
+                    self.global_step_count += 1
 
                     # ammo2_delta = self.env.get_game_variable(GameVariable.AMMO2) - last_total_ammo2
                     # last_total_ammo2 = self.env.get_game_variable(GameVariable.AMMO2)
@@ -206,8 +209,8 @@ class Agent(object):
 
                     # If the episode hasn't ended, but the experience buffer is full, then we
                     # make an update step using that experience rollout.
-                    # if len(episode_buffer) == 32 and d is False and episode_step_count != max_episode_length - 1:
-                    # A3C is n-step q-learning -> instead of updating the network every n steps, we update it at the end of episode
+                    # if len(episode_buffer) == 128 and d is False and episode_step_count != max_episode_length - 1:
+                    # A3C and n-step q-learning -> instead of updating the network every n steps, we update it at the end of episode
                     # because reward can only be earned at the end of the episode for basic_scenario.wad
                     if d:
                         # Since we don't know what the true final return is,
@@ -226,18 +229,19 @@ class Agent(object):
 
                 # summaries
                 self.episode_reward.append(episode_reward)
+                self.episode_step_counts.append(episode_step_count)
                 # self.episode_episode_total_pickes.append(last_total_health)
                 # self.episode_kills.append(last_total_kills)
-                self.episode_lengths.append(episode_step_count)
-                self.episode_mean_values.append(np.mean(episode_values))
+                # self.episode_lengths.append(episode_step_count)
+                # self.episode_mean_values.append(np.mean(episode_values))
 
                 # Update the network using the experience buffer at the end of the episode.
                 if len(episode_buffer) != 0:
                     l, v_l, p_l, e_l, g_n, v_n = self.infer(episode_buffer, sess, gamma, 0.0)
 
                 # Periodically save gifs of episodes, model parameters, and summary statistics.
-                if episode_count % 5 == 0:
-                    if episode_count % 100 == 0 and self.name == 'worker_0':
+                if episode_count % 5 == 0 and self.name == 'worker_0':
+                    if episode_count % 200 == 0:
                         saver.save(sess, self.model_path+'/model-'+str(episode_count)+'.ckpt')
                         print("Episode count {}, saved Model, time costs {}".format(episode_count, time.time()-start_t))
                         start_t = time.time()
@@ -245,34 +249,39 @@ class Agent(object):
                         # time_per_step = 0.05
                         images = np.array(episode_frames)
                         # print("hi")
-                        make_gif(images,'./files/frames/image'+str(episode_count)+'.gif',
+                        make_gif(images,f'./{cfg.filepath}/frames/image'+str(episode_count)+'.gif',
                             duration=len(images)*time_per_step,true_image=True,salience=False)
 
                     # mean_picked = np.mean(self.episode_episode_total_pickes[-5:])
                     mean_reward = np.mean(self.episode_reward[-5:])
+                    mean_steps = np.mean(self.episode_step_counts[-5:])
                     # mean_health = np.mean(self.episode_health[-5:])
-                    mean_length = np.mean(self.episode_lengths[-5:])
-                    mean_value = np.mean(self.episode_mean_values[-5:])
+                    # mean_length = np.mean(self.episode_lengths[-5:])
+                    # mean_value = np.mean(self.episode_mean_values[-5:])
                     # mean_kills = np.mean(self.episode_kills[-5:])
-                    summary = tf.Summary()
-                    summary.value.add(tag='Performance/Mean Reward', simple_value=mean_reward)
+                    summary = tf.compat.v1.Summary()
+                    summary.value.add(tag='Steps per episode', simple_value=mean_steps)
+                    summary.value.add(tag='Mean Reward Against Episodes', simple_value=mean_reward)
                     # summary.value.add(tag='Performance/Health', simple_value=mean_health)
                     # summary.value.add(tag='Performance/Kills', simple_value=mean_kills)
-                    summary.value.add(tag='Performance/Steps', simple_value=mean_length)
-                    summary.value.add(tag='Performance/Mean Value', simple_value=mean_value)
-                    summary.value.add(tag='Losses/Total Loss', simple_value=l)
-                    summary.value.add(tag='Losses/Value Loss', simple_value=v_l)
-                    summary.value.add(tag='Losses/Policy Loss', simple_value=p_l)
-                    summary.value.add(tag='Losses/Entropy', simple_value=e_l)
-                    summary.value.add(tag='Losses/Grad Norm', simple_value=g_n)
-                    summary.value.add(tag='Losses/Var Norm', simple_value=v_n)
+                    # summary.value.add(tag='Performance/Steps', simple_value=mean_length)
+                    # summary.value.add(tag='Performance/Mean Value', simple_value=mean_value)
+                    # summary.value.add(tag='Losses/Total Loss', simple_value=l)
+                    # summary.value.add(tag='Losses/Value Loss', simple_value=v_l)
+                    # summary.value.add(tag='Losses/Policy Loss', simple_value=p_l)
+                    # summary.value.add(tag='Losses/Entropy', simple_value=e_l)
+                    # summary.value.add(tag='Losses/Grad Norm', simple_value=g_n)
+                    # summary.value.add(tag='Losses/Var Norm', simple_value=v_n)
                     self.summary_writer.add_summary(summary, episode_count)
+                    summary = tf.compat.v1.Summary()
+                    summary.value.add(tag='Mean Reward Against Steps', simple_value=mean_reward)
+                    self.summary_writer.add_summary(summary, self.global_step_count)
                     self.summary_writer.flush()
 
                 if self.name == 'worker_0':
                     sess.run(self.increment)
                 episode_count += 1
-                if episode_count == 2000:  # thread to stop
+                if episode_count == cfg.max_episodes:  # thread to stop
                     print("Stop training name:{}".format(self.name))
                     coord.request_stop()
 
@@ -365,7 +374,7 @@ class Agent(object):
     def button_combinations():
         actions = []
         # m_left_right = [[True, False], [False, True], [False, False]]  # move left and move right
-        # attack = [[True], [False]]
+        # # attack = [[True], [False]]
         # m_forward_backward = [[True, False], [False, True], [False, False]]  # move forward and backward
         move_with_speed = [[True, False], [True, True], [False, False]]
         t_left_right = [[True, False], [False, True], [False, False]]  # turn left and turn right
@@ -375,4 +384,5 @@ class Agent(object):
         # for k in m_forward_backward:
             for l in t_left_right:
                 actions.append(j+l)
+                    
         return actions

@@ -40,7 +40,7 @@ train_arg.add_argument("--batch_size", type=int,
                        help="Number of experiences to sample from memory during training")
 
 train_arg.add_argument("--episodes", type=int,
-                       default=5000,
+                       default=2500,
                        help="Number of episodes to train on")
 
 train_arg.add_argument("--entropy_rate", type=int,

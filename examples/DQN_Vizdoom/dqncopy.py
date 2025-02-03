@@ -17,7 +17,6 @@ from tensorflow.keras import Model, Sequential
 from tensorflow.keras.layers import BatchNormalization, Conv2D, Dense, Flatten, ReLU
 from tensorflow.keras.optimizers import SGD
 from tqdm import trange
-from tensorflow.python.profiler import profiler_v2 as profiler
 import moviepy as mpy
 
 import vizdoom as vzd
@@ -28,17 +27,17 @@ tf.compat.v1.enable_eager_execution()
 tf.executing_eagerly()
 
 # Q-learning settings
-learning_rate = 0.01
-discount_factor = 0.99
+learning_rate = 0.0001
+discount_factor = 0.95
 replay_memory_size = 10000
 num_train_epochs = 10
 learning_steps_per_epoch = 5000
 target_net_update_steps = 1000
-total_episodes = 5000
+total_episodes = 1000
 
 # NN learning settings
 # batch_size = 64
-batch_size = 40
+batch_size = 64
 
 # Training regime
 test_episodes_per_epoch = 1
@@ -54,11 +53,14 @@ skip_learning = False
 watch = False
 
 # Configuration file path
-config_file_path = "../../maps/basic.cfg"
-total_possible_actions = 3
+config_file_path = "../../maps/basic_scenario.cfg"
+total_possible_actions = 9
 model_savefolder = "./model"
 summary_folder="./files2"
 frames_folder="./frames"
+
+if not os.path.exists(frames_folder):
+    os.makedirs(frames_folder)
 
 if len(tf.config.experimental.list_physical_devices("GPU")) > 0:
     print("GPU available")
@@ -252,7 +254,7 @@ def run(agent, game, replay_memory):
                     with summary_writer.as_default():
                         tf.summary.scalar('Mean Reward', mean_reward, step=global_episodes)
                         summary_writer.flush()  
-                if global_episodes % 5 == 0:
+                if global_episodes % 100 == 0:
                         time_per_step = 0.005
                         images = np.array(episode_frames)
                         print(len(images))
@@ -366,8 +368,8 @@ if __name__ == "__main__":
 
     n = game.get_available_buttons_size()
     # actions = [list(a) for a in it.product([0, 1], repeat=n)]
-    actions = [[0,0,1],[0,1,0],[1,0,0]]
-    # actions = get_actions()
+    # actions = [[0,0,1],[0,1,0],[1,0,0]]
+    actions = get_actions()
     print(actions)
     # time.sleep(5)
 
@@ -389,7 +391,7 @@ if __name__ == "__main__":
         game.close()
 
         if watch:
-            game.set_window_visible(True)
+            game.set_window_visible(False)
             game.set_mode(vzd.Mode.ASYNC_PLAYER)
             game.init()
 

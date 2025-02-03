@@ -14,14 +14,18 @@ import agent
 import network
 import configs as cfg
 
+tf.config.threading.set_intra_op_parallelism_threads(40)
+tf.config.threading.set_inter_op_parallelism_threads(40)
+
 max_episode_length = 1500
-gamma = .99  # discount rate for advantage estimation and reward discounting
+gamma = cfg.gamma  # discount rate for advantage estimation and reward discounting
 s_size = 6400 # 80 * 80 * 1
 a_size = 3  # Agent can move Left, Right, or Fire
+num_workers = cfg.num_workers
 load_model = False
 
-model_path = './files/check_point'
-frames_path = './files/frames'
+model_path = f'./{cfg.filepath}/check_point'
+frames_path = f'./{cfg.filepath}/frames'
 
 if not os.path.exists(model_path):
     os.makedirs(model_path)
@@ -40,9 +44,8 @@ def main_train(tf_configs=None):
     global_episodes = tf.Variable(0, dtype=tf.int32, name='global_episodes', trainable=False)
     with tf.device("/cpu:0"): 
         # before learning rate was 1e-6
-        optimizer = tf.compat.v1.train.AdamOptimizer(learning_rate=1e-5)
+        optimizer = tf.compat.v1.train.AdamOptimizer(learning_rate=cfg.lr)
         master_network = network.ACNetwork('global', optimizer, shape=cfg.new_img_dim)  # Generate global network
-        num_workers = 8
         agents = []
         # Create worker classes
         for i in range(num_workers):
@@ -89,7 +92,7 @@ def main_play(tf_configs=None):
 
 if __name__ == '__main__':
 
-    train = False
+    train = True
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
     if train:
