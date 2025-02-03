@@ -23,7 +23,7 @@ def tflog2pandas(path):
         traceback.print_exc()
     return runlog_data
 
-df=tflog2pandas("./files4/summaries/agent_0")
+df=tflog2pandas("./files3/summaries/agent_0")
 #df=df[(df.metric != 'params/lr')&(df.metric != 'params/mm')&(df.metric != 'train/loss')] #delete the mentioned rows
 # df.to_csv("output.csv")
 # Load the TensorBoard logs
@@ -32,7 +32,7 @@ df=tflog2pandas("./files4/summaries/agent_0")
 
 # Convert to DataFrame
 # df = tf.data.experimental.to_dataframe(logs)
-filename = "exp_32"
+filename = "optimal_hyperparameters"
 
 
 # Save to CSV
@@ -41,11 +41,11 @@ df.to_csv(f"./results/{filename}.csv")
 
 parameters = "actions=FORWARD, SPEED, TLEFT, TRIGHT\n"
 parameters += "action_combinations=all\n"
-parameters += "max_episodes=1000\n"
+parameters += "max_episodes=2500\n"
 parameters += "num_workers=8\n"
 parameters += "living_reward=-0.001\n"
-parameters += "gamma=0.95\n"
-parameters += "lr=1e-4\n"
+parameters += "gamma=0.9\n"
+parameters += "lr=1e-5\n"
 parameters += "frameskip=4\n"
 parameters += "network_update_interval=max steps"
 

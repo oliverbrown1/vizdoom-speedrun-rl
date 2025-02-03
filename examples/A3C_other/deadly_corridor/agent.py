@@ -94,7 +94,7 @@ class Agent(object):
         # game.add_available_game_variable(GameVariable.USER1)
         game.set_episode_timeout(2000)
         game.set_episode_start_time(10)
-        game.set_window_visible(False)
+        game.set_window_visible(True)
         game.set_sound_enabled(False)
         game.set_living_reward(cfg.living_reward)
         game.set_mode(Mode.PLAYER)

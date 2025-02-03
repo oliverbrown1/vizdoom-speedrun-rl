@@ -84,7 +84,7 @@ def main_play(tf_configs=None):
         print('Loading Model...')
         saver = tf.train.Saver()
         ckpt = tf.train.get_checkpoint_state(model_path)
-        saver.restore(sess, os.path.join(model_path, 'model-1900.ckpt'))
+        saver.restore(sess, os.path.join(model_path, 'model-800.ckpt'))
         print('Successfully loaded!')
 
         ag.play_game(sess, 10)
@@ -92,7 +92,7 @@ def main_play(tf_configs=None):
 
 if __name__ == '__main__':
 
-    train = True
+    train = False
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
     if train:
