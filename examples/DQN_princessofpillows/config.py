@@ -19,16 +19,33 @@ def add_argument_group(name):
     arg_lists.append(arg)
     return arg
 
+def get_actions():
+    actions = []
+    # m_left_right = [[True, False], [False, True], [False, False]]  # move left and move right
+    # attack = [[True], [False]]
+    # m_forward_backward = [[True, False], [False, True], [False, False]]  # move forward and backward
+    move_with_speed = [[True, False], [True, True], [False, False]]
+    t_left_right = [[True, False], [False, True], [False, False]]  # turn left and turn right
+
+    # for i in attack:
+    for j in move_with_speed:
+        # for k in m_forward_backward:
+            for l in t_left_right:
+                actions.append(j+l)
+    return actions
+
+actions=get_actions()
+
 # ----------------------------------------
 # Arguments for training
 train_arg = add_argument_group("Training")
 
 train_arg.add_argument("--learning_rate", type=float,
-                       default=1e-2,
+                       default=1e-5,
                        help="Learning rate (gradient step size)")
 
 train_arg.add_argument("--discount", type=float,
-                       default=0.99,
+                       default=0.9,
                        help="Ensures Q function will converge by providing diminishing returns. Must be < 1")
 
 train_arg.add_argument("--epsilon", type=float,
@@ -36,11 +53,11 @@ train_arg.add_argument("--epsilon", type=float,
                        help="Probability of e-greedy exploration. Reduced linearly over time")
 
 train_arg.add_argument("--batch_size", type=int,
-                       default=40,
+                       default=64,
                        help="Number of experiences to sample from memory during training")
 
 train_arg.add_argument("--episodes", type=int,
-                       default=2500,
+                       default=200,
                        help="Number of episodes to train on")
 
 train_arg.add_argument("--entropy_rate", type=int,
@@ -84,7 +101,7 @@ train_arg.add_argument("-f", "--extension", type=str,
 test_arg = add_argument_group("Testing")
 
 test_arg.add_argument("--test_episodes", type=int,
-                       default=100,
+                       default=1,
                        help="Number of episodes to test on")
 
 # ----------------------------------------
@@ -107,7 +124,7 @@ model_arg.add_argument("--init", type=str,
                        help="Initialization function to use")
 
 model_arg.add_argument("--actions", type=int,
-                       default=[shoot, left, right],
+                       default=actions,
                        help="Possible actions to take")
 
 model_arg.add_argument("--skiprate", type=int,

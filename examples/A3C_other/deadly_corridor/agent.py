@@ -86,15 +86,15 @@ class Agent(object):
         # game.add_available_button(Button.MOVE_LEFT)
         # game.add_available_button(Button.MOVE_RIGHT)
         game.add_available_button(Button.MOVE_FORWARD)
-        game.add_available_button(Button.SPEED)
         # game.add_available_button(Button.MOVE_BACKWARD)
+        game.add_available_button(Button.SPEED)
         game.add_available_button(Button.TURN_LEFT)
         game.add_available_button(Button.TURN_RIGHT)
         # game.add_available_button(Button.ATTACK)
         # game.add_available_game_variable(GameVariable.USER1)
         game.set_episode_timeout(2000)
         game.set_episode_start_time(10)
-        game.set_window_visible(True)
+        game.set_window_visible(False)
         game.set_sound_enabled(False)
         game.set_living_reward(cfg.living_reward)
         game.set_mode(Mode.PLAYER)
@@ -209,7 +209,7 @@ class Agent(object):
 
                     # If the episode hasn't ended, but the experience buffer is full, then we
                     # make an update step using that experience rollout.
-                    # if len(episode_buffer) == 128 and d is False and episode_step_count != max_episode_length - 1:
+                    # if len(episode_buffer) == 32 and d is False and episode_step_count != max_episode_length - 1:
                     # A3C and n-step q-learning -> instead of updating the network every n steps, we update it at the end of episode
                     # because reward can only be earned at the end of the episode for basic_scenario.wad
                     if d:
@@ -374,15 +374,15 @@ class Agent(object):
     def button_combinations():
         actions = []
         # m_left_right = [[True, False], [False, True], [False, False]]  # move left and move right
-        # # attack = [[True], [False]]
-        # m_forward_backward = [[True, False], [False, True], [False, False]]  # move forward and backward
+        # attack = [[True], [False]]
+        # m_forward_backward_speed = [[True, False, True], [False, True, True], [False, False, False], [True, False, False], [False, True, False]]  # move forward and backward
         move_with_speed = [[True, False], [True, True], [False, False]]
         t_left_right = [[True, False], [False, True], [False, False]]  # turn left and turn right
 
     # for i in m_left_right:
         for j in move_with_speed:
-        # for k in m_forward_backward:
+        # for k in m_forward_backward_speed:
             for l in t_left_right:
                 actions.append(j+l)
-                    
+                        
         return actions

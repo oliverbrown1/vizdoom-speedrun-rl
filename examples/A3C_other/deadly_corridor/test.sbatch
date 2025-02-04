@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#SBATCH --job-name=a3c-exp-35 # Job name for tracking
+#SBATCH --job-name=a3c-exp-36 # Job name for tracking
 #SBATCH --partition=cpu-batch  # Partition you wish to use (see above for list)
 #SBATCH --cpus-per-task=20     # Number of CPU threads used by your job, set this upto 40 as required.
 #SBATCH --mem=60000            # 60GB RAM
