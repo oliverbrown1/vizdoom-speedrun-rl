@@ -61,6 +61,9 @@ frames_folder="./frames"
 
 if not os.path.exists(frames_folder):
     os.makedirs(frames_folder)
+if not os.path.exists(model_savefolder):
+    os.makedirs(model_savefolder)
+
 
 if len(tf.config.experimental.list_physical_devices("GPU")) > 0:
     print("GPU available")
@@ -82,7 +85,7 @@ def initialize_game():
     print("Initializing doom...")
     game = vzd.DoomGame()
     game.load_config(config_file_path)
-    game.set_window_visible(False)
+    game.set_window_visible(True)
     game.set_mode(vzd.Mode.PLAYER)
     game.set_screen_format(vzd.ScreenFormat.GRAY8)
     game.set_screen_resolution(vzd.ScreenResolution.RES_640X480)
@@ -161,7 +164,7 @@ class DQNAgent:
         done_ids = extractDigits(np.where(dones)[0])
 
         with tf.GradientTape() as tape:
-            # tape.watch(self.dqn.trainable_variables.value)
+            tape.watch(self.dqn.trainable_variables)
             # for var in self.dqn.trainable_variables:
             #     tape.watch(var)
 
