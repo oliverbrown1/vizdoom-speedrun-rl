@@ -1,0 +1,13 @@
+actions=FORWARD, SPEED, TLEFT, TRIGHT
+lr=1e-4
+living_reward=-0.001
+gamma=0.99
+epsilon=1
+batch_size=64
+max_episodes=5000
+entropy_rate=1e-4
+update_target_rate=0.25
+alpha=0.6
+frameskip=4
+decay_rate=0.9995 (begins after 200 episodes)
+experience_replay_size=50000

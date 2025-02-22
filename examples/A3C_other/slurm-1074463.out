@@ -1,0 +1,128 @@
+testing GTK3Agg
+     GTK3Agg Not found
+testing GTK3Cairo
+     GTK3Cairo Not found
+testing GTK4Agg
+     GTK4Agg Not found
+testing GTK4Cairo
+     GTK4Cairo Not found
+testing MacOSX
+     MacOSX Not found
+testing nbAgg
+     nbAgg Not found
+testing QtAgg
+     QtAgg Not found
+testing QtCairo
+     QtCairo Not found
+testing Qt5Agg
+     Qt5Agg Not found
+testing Qt5Cairo
+     Qt5Cairo Not found
+testing TkAgg
+     TkAgg Not found
+testing TkCairo
+     TkCairo Not found
+testing WebAgg
+     WebAgg Not found
+testing WX
+     WX Not found
+testing WXAgg
+     WXAgg Not found
+testing WXCairo
+     WXCairo Not found
+testing GTK3Agg
+     GTK3Agg Not found
+testing GTK3Cairo
+     GTK3Cairo Not found
+testing GTK4Agg
+     GTK4Agg Not found
+testing GTK4Cairo
+     GTK4Cairo Not found
+testing MacOSX
+     MacOSX Not found
+testing nbAgg
+     nbAgg Not found
+testing QtAgg
+     QtAgg Not found
+testing QtCairo
+     QtCairo Not found
+testing Qt5Agg
+     Qt5Agg Not found
+testing Qt5Cairo
+     Qt5Cairo Not found
+testing TkAgg
+     TkAgg Not found
+testing TkCairo
+     TkCairo Not found
+testing WebAgg
+     WebAgg Not found
+testing WX
+     WX Not found
+testing WXAgg
+     WXAgg Not found
+testing WXCairo
+     WXCairo Not found
+/dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other
+/dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other
+/dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other
+/dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other
+/dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other
+/dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other
+/dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other
+/dcs/22/u2256152/VIZDOOM/3rd-year-project/examples/A3C_other
+Starting worker 0
+Starting worker 1
+Starting worker 2
+Starting worker 3
+Starting worker 4
+Starting worker 5
+Starting worker 6
+Starting worker 7
+worker_4, episode #0, reward: -1.1350000000000007, steps:284, time costs:8.4900541305542
+worker_0, episode #0, reward: -2.7380000000000018, steps:685, time costs:18.165428400039673
+worker_5, episode #0, reward: -2.5340000000000016, steps:634, time costs:17.524205684661865
+Episode count 0, saved Model, time costs 21.460814714431763
+worker_1, episode #0, reward: -3.000000000000002, steps:750, time costs:21.20512080192566
+worker_2, episode #0, reward: -3.000000000000002, steps:750, time costs:22.88508415222168
+MoviePy - Building file .//maze_1/frames/image0.gif with imageio.
+worker_3, episode #0, reward: -2.6010000000000018, steps:651, time costs:34.513583183288574
+worker_4, episode #1, reward: -1.8900000000000015, steps:473, time costs:29.381083488464355
+worker_6, episode #0, reward: -2.901000000000002, steps:726, time costs:39.630106925964355
+worker_7, episode #0, reward: -3.000000000000002, steps:750, time costs:40.77003455162048
+worker_2, episode #1, reward: -0.8800000000000007, steps:220, time costs:21.348188400268555
+worker_5, episode #1, reward: -1.6290000000000011, steps:408, time costs:27.775726318359375
+worker_1, episode #1, reward: -2.669000000000002, steps:668, time costs:34.34300136566162
+worker_4, episode #2, reward: -2.4000000000000017, steps:600, time costs:17.796998739242554
+worker_5, episode #2, reward: -1.5440000000000011, steps:386, time costs:10.41993236541748
+worker_7, episode #1, reward: -2.1820000000000013, steps:546, time costs:15.284069776535034
+worker_3, episode #1, reward: -3.000000000000002, steps:750, time costs:24.06880760192871
+worker_0, episode #1, reward: -3.000000000000002, steps:750, time costs:22.76095151901245
+worker_6, episode #1, reward: -3.000000000000002, steps:750, time costs:22.317453384399414
+worker_2, episode #2, reward: -2.992000000000002, steps:748, time costs:20.809916734695435
+worker_0, episode #2, reward: -0.8320000000000006, steps:208, time costs:5.763892412185669
+worker_5, episode #3, reward: -1.3350000000000009, steps:334, time costs:9.717763185501099
+worker_1, episode #2, reward: -3.000000000000002, steps:750, time costs:21.0038321018219
+worker_5, episode #4, reward: -1.352000000000001, steps:338, time costs:8.54181718826294
+worker_4, episode #3, reward: -3.000000000000002, steps:750, time costs:20.504562854766846
+worker_3, episode #2, reward: -2.615000000000002, steps:654, time costs:18.156673192977905
+worker_0, episode #3, reward: -1.8090000000000013, steps:453, time costs:12.164052963256836
+worker_7, episode #2, reward: -3.000000000000002, steps:750, time costs:21.436239004135132
+worker_2, episode #3, reward: -2.663000000000002, steps:666, time costs:18.22750759124756
+worker_4, episode #4, reward: -0.9380000000000007, steps:235, time costs:6.8323071002960205
+worker_6, episode #2, reward: -3.000000000000002, steps:750, time costs:20.789725303649902
+worker_3, episode #3, reward: -1.284000000000001, steps:321, time costs:8.964236736297607
+worker_7, episode #3, reward: -1.6690000000000011, steps:418, time costs:11.27021312713623
+worker_0, episode #4, reward: -2.0010000000000012, steps:501, time costs:13.480544805526733
+worker_2, episode #4, reward: -1.3210000000000008, steps:331, time costs:8.899533987045288
+worker_3, episode #4, reward: -1.1310000000000007, steps:283, time costs:7.728739261627197
+worker_1, episode #3, reward: -2.985000000000002, steps:747, time costs:20.565070867538452
+worker_5, episode #5, reward: -3.000000000000002, steps:750, time costs:20.544361352920532
+worker_4, episode #5, reward: -2.0690000000000013, steps:518, time costs:14.301446437835693
+worker_5, episode #6, reward: -0.9620000000000007, steps:241, time costs:6.13573956489563
+worker_6, episode #3, reward: -3.000000000000002, steps:750, time costs:20.26487708091736
+worker_7, episode #4, reward: -2.0950000000000015, steps:524, time costs:14.520747661590576
+worker_2, episode #5, reward: -2.3070000000000017, steps:577, time costs:15.879663705825806
+worker_0, episode #5, reward: -2.4820000000000015, steps:621, time costs:16.56218981742859
+worker_3, episode #5, reward: -2.5220000000000016, steps:631, time costs:15.359546899795532
+Episode count 5, saved Model, time costs 91.8328149318695
+MoviePy - Building file .//maze_1/frames/image5.gif with imageio.

@@ -6,11 +6,22 @@ import tensorflow as tf
 # Global variables
 arg_lists = []
 parser = argparse.ArgumentParser()
+# we want to focus on laerning stability
+# increase the discount value
 
-# Possible actions
-shoot = [1, 0, 0]
-left = [0, 1, 0]
-right = [0, 0, 1]
+# exp38 -> frameskip=4, decay_rate = 0.9995, living_reward = -0.001, batch_size = 128, episodes=  1000
+# exp39 -> batch_size = 64, update_target_rate = 0.25
+# exp40 -> update_target_rate = 0.2, entropy_Rate = 1e-3
+# exp41 -> update_Target_Rate = 0.25, episodes = 5000, entropy_rate = 1e-4
+# exp42 -> gradient_clip_val = 10, episodes = 1000
+# exp43 -> episodes = 5000, lr=1e-5
+
+exp_number = 43
+
+# # Possible actions
+# shoot = [1, 0, 0]
+# left = [0, 1, 0]
+# right = [0, 0, 1]
 
 # ----------------------------------------
 # Macro for arparse
@@ -44,28 +55,36 @@ train_arg.add_argument("--learning_rate", type=float,
                        default=1e-5,
                        help="Learning rate (gradient step size)")
 
+train_arg.add_argument("--living_reward", type=float,
+                       default=-0.001,
+                       help="Living reward for the agent")
+
 train_arg.add_argument("--discount", type=float,
-                       default=0.9,
+                       default=0.99,
                        help="Ensures Q function will converge by providing diminishing returns. Must be < 1")
 
 train_arg.add_argument("--epsilon", type=float,
                        default=1.0,
                        help="Probability of e-greedy exploration. Reduced linearly over time")
 
+train_arg.add_argument("--epsilon_decay_rate", type=int,
+                       default=0.9995,
+                       help="The epsilon decay rate multiplier after each episode")
+
 train_arg.add_argument("--batch_size", type=int,
                        default=64,
                        help="Number of experiences to sample from memory during training")
 
 train_arg.add_argument("--episodes", type=int,
-                       default=200,
+                       default=5000,
                        help="Number of episodes to train on")
 
 train_arg.add_argument("--entropy_rate", type=int,
-                       default=1e-2,
+                       default=1e-4,
                        help="Ratio of entropy regularization to apply to loss")
 
 train_arg.add_argument("--update_target_rate", type=int,
-                       default=1,
+                       default=0.25,
                        help="Frequency to update target network. 1.0 is every episode, 0.1 is every 10 episodes, etc...")
 
 train_arg.add_argument("--alpha", type=float,
@@ -77,7 +96,7 @@ train_arg.add_argument("--temp", type=int,
                        help="Temperature for boltzmann exploration (higher = more exploration)")
 
 train_arg.add_argument("--log_dir", type=str,
-                       default="./logs/",
+                       default=f"./files{exp_number}/",
                        help="Directory to save logs")
 
 train_arg.add_argument("--log_freq", type=int,
@@ -89,7 +108,7 @@ train_arg.add_argument("--save_dir", type=str,
                        help="Directory to save current model")
 
 train_arg.add_argument("--save_freq", type=int,
-                       default=1000,
+                       default=10000,
                        help="Number of episodes before saving model")
 
 train_arg.add_argument("-f", "--extension", type=str,
@@ -140,7 +159,7 @@ model_arg.add_argument("--num_frames", type=int,
 mem_arg = add_argument_group("Memory")
 
 mem_arg.add_argument("--cap", type=int,
-                       default=10000,
+                       default=50000,
                        help="Maximum number of transitions in replay memory")
 
 # ----------------------------------------

@@ -1,7 +1,0 @@
-*
-*.ini
-*.pyc
-!*.py
-!*.md
-!*.gitignore
-vizdoom/
