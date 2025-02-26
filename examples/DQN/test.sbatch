@@ -1,11 +1,10 @@
 #!/bin/bash
 #
-#SBATCH --job-name=a3c_maze_12 # Job name for tracking
+#SBATCH --job-name=dqn_files_47 # Job name for tracking
 #SBATCH --partition=cpu-batch  # Partition you wish to use (see above for list)
-#SBATCH --cpus-per-task=10     # Number of CPU threads used by your job, set this upto 40 as required.
-#SBATCH --mem=60000            # 60GB RAM
-#SBATCH --exclusive=mcs        # Exclusive mode, only this job will run
-#SBATCH --time=2-00:00:00      # Job time limit set to 2 days (48 hours)
+#SBATCH --cpus-per-task=20     # Number of CPU threads used by your job, set this upto 40 as required.
+#SBATCH --mem-per-cpu=3000     # RAM in MB needed per core (i.e. 1500MB * 40 threads = 60GB RAM)
+#SBATCH --time=1-00:00:00      # Job time limit set to 2 days (48 hours)
 #
 #SBATCH --mail-type=END,FAIL,TIME_LIMIT_80 # Events to send email on, remove if you don't want this
 #SBATCH --error=joboutput_%j.err  # Standard error from your job
@@ -16,7 +15,7 @@ source /etc/profile.d/conda.sh
 
 ## Execute your program(s) ##
 # python3 -c "print('hello')"
-python deadly_corridor.py
+python main.py
 ## Other examples:
 ## A Python program
 # python3 my_program.py

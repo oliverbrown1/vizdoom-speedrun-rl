@@ -68,12 +68,13 @@ class Agent(object):
         game = DoomGame()
         # game.set_doom_scenario_path('../scenarios/deadly_corridor.cfg')
         # game.load_config("./maps/basic.cfg")
-        # game.set_doom_map("map01")
         import os
         current_working_directory = os.getcwd()
         print(current_working_directory)
-        game.set_doom_scenario_path("../../maps/s.wad")
+        game.set_doom_scenario_path("../../maps/maze.wad")
         # game.set_doom_map("map01")
+        # needed for custom maze scenarios
+        game.set_doom_map("map02")
         game.set_screen_resolution(ScreenResolution.RES_400X225)
         game.set_screen_format(ScreenFormat.RGB24)
         game.set_render_hud(False)
@@ -92,7 +93,7 @@ class Agent(object):
         game.add_available_button(Button.TURN_RIGHT)
         # game.add_available_button(Button.ATTACK)
         # game.add_available_game_variable(GameVariable.USER1)
-        game.set_episode_timeout(3000)
+        game.set_episode_timeout(cfg.episode_timeout_steps)
         game.set_episode_start_time(10)
         game.set_window_visible(False)
         game.set_sound_enabled(False)
@@ -209,10 +210,10 @@ class Agent(object):
 
                     # If the episode hasn't ended, but the experience buffer is full, then we
                     # make an update step using that experience rollout.
-                    # if len(episode_buffer) == 32 and d is False and episode_step_count != max_episode_length - 1:
+                    if len(episode_buffer) == 64 and d is False and episode_step_count != max_episode_length - 1:
                     # A3C and n-step q-learning -> instead of updating the network every n steps, we update it at the end of episode
                     # because reward can only be earned at the end of the episode for basic_scenario.wad
-                    if d:
+                    # if d:
                         # Since we don't know what the true final return is,
                         # we "bootstrap" from our current value estimation.
                         v1 = sess.run(self.local_AC_network.value,
@@ -241,7 +242,7 @@ class Agent(object):
 
                 # Periodically save gifs of episodes, model parameters, and summary statistics.
                 if episode_count % 5 == 0 and self.name == 'worker_0':
-                    if episode_count % 5 == 0:
+                    if episode_count % 100 == 0:
                         saver.save(sess, self.model_path+'/model-'+str(episode_count)+'.ckpt')
                         print("Episode count {}, saved Model, time costs {}".format(episode_count, time.time()-start_t))
                         start_t = time.time()
@@ -273,9 +274,6 @@ class Agent(object):
                     # summary.value.add(tag='Losses/Grad Norm', simple_value=g_n)
                     # summary.value.add(tag='Losses/Var Norm', simple_value=v_n)
                     self.summary_writer.add_summary(summary, episode_count)
-                    summary = tf.compat.v1.Summary()
-                    summary.value.add(tag='Mean Reward Against Steps', simple_value=mean_reward)
-                    self.summary_writer.add_summary(summary, self.global_step_count)
                     self.summary_writer.flush()
 
                 if self.name == 'worker_0':

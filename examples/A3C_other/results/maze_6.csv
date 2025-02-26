@@ -1,0 +1,592 @@
+,metric,value,step
+0,Steps per episode,500.0,0.0
+1,Steps per episode,458.79998779296875,5.0
+2,Steps per episode,500.0,10.0
+3,Steps per episode,500.0,15.0
+4,Steps per episode,500.0,20.0
+5,Steps per episode,500.0,25.0
+6,Steps per episode,500.0,30.0
+7,Steps per episode,467.3999938964844,35.0
+8,Steps per episode,500.0,40.0
+9,Steps per episode,500.0,45.0
+10,Steps per episode,500.0,50.0
+11,Steps per episode,500.0,55.0
+12,Steps per episode,500.0,60.0
+13,Steps per episode,500.0,65.0
+14,Steps per episode,410.6000061035156,70.0
+15,Steps per episode,500.0,75.0
+16,Steps per episode,500.0,80.0
+17,Steps per episode,500.0,85.0
+18,Steps per episode,500.0,90.0
+19,Steps per episode,500.0,95.0
+20,Steps per episode,500.0,100.0
+21,Steps per episode,500.0,105.0
+22,Steps per episode,500.0,110.0
+23,Steps per episode,500.0,115.0
+24,Steps per episode,500.0,120.0
+25,Steps per episode,500.0,125.0
+26,Steps per episode,490.3999938964844,130.0
+27,Steps per episode,476.79998779296875,135.0
+28,Steps per episode,500.0,140.0
+29,Steps per episode,500.0,145.0
+30,Steps per episode,492.79998779296875,150.0
+31,Steps per episode,500.0,155.0
+32,Steps per episode,500.0,160.0
+33,Steps per episode,500.0,165.0
+34,Steps per episode,500.0,170.0
+35,Steps per episode,500.0,175.0
+36,Steps per episode,500.0,180.0
+37,Steps per episode,500.0,185.0
+38,Steps per episode,464.20001220703125,190.0
+39,Steps per episode,500.0,195.0
+40,Steps per episode,500.0,200.0
+41,Steps per episode,480.6000061035156,205.0
+42,Steps per episode,500.0,210.0
+43,Steps per episode,500.0,215.0
+44,Steps per episode,500.0,220.0
+45,Steps per episode,500.0,225.0
+46,Steps per episode,500.0,230.0
+47,Steps per episode,500.0,235.0
+48,Steps per episode,459.20001220703125,240.0
+49,Steps per episode,500.0,245.0
+50,Steps per episode,500.0,250.0
+51,Steps per episode,500.0,255.0
+52,Steps per episode,500.0,260.0
+53,Steps per episode,473.0,265.0
+54,Steps per episode,494.0,270.0
+55,Steps per episode,500.0,275.0
+56,Steps per episode,500.0,280.0
+57,Steps per episode,500.0,285.0
+58,Steps per episode,452.20001220703125,290.0
+59,Steps per episode,500.0,295.0
+60,Steps per episode,500.0,300.0
+61,Steps per episode,500.0,305.0
+62,Steps per episode,483.20001220703125,310.0
+63,Steps per episode,437.79998779296875,315.0
+64,Steps per episode,461.3999938964844,320.0
+65,Steps per episode,446.6000061035156,325.0
+66,Steps per episode,477.0,330.0
+67,Steps per episode,454.0,335.0
+68,Steps per episode,500.0,340.0
+69,Steps per episode,500.0,345.0
+70,Steps per episode,500.0,350.0
+71,Steps per episode,500.0,355.0
+72,Steps per episode,500.0,360.0
+73,Steps per episode,398.3999938964844,365.0
+74,Steps per episode,500.0,370.0
+75,Steps per episode,500.0,375.0
+76,Steps per episode,500.0,380.0
+77,Steps per episode,500.0,385.0
+78,Steps per episode,500.0,390.0
+79,Steps per episode,427.20001220703125,395.0
+80,Steps per episode,500.0,400.0
+81,Steps per episode,482.3999938964844,405.0
+82,Steps per episode,500.0,410.0
+83,Steps per episode,500.0,415.0
+84,Steps per episode,483.3999938964844,420.0
+85,Steps per episode,500.0,425.0
+86,Steps per episode,462.79998779296875,430.0
+87,Steps per episode,500.0,435.0
+88,Steps per episode,500.0,440.0
+89,Steps per episode,500.0,445.0
+90,Steps per episode,500.0,450.0
+91,Steps per episode,500.0,455.0
+92,Steps per episode,500.0,460.0
+93,Steps per episode,500.0,465.0
+94,Steps per episode,500.0,470.0
+95,Steps per episode,500.0,475.0
+96,Steps per episode,497.6000061035156,480.0
+97,Steps per episode,468.20001220703125,485.0
+98,Steps per episode,500.0,490.0
+99,Steps per episode,500.0,495.0
+100,Steps per episode,500.0,500.0
+101,Steps per episode,489.79998779296875,505.0
+102,Steps per episode,500.0,510.0
+103,Steps per episode,500.0,515.0
+104,Steps per episode,453.3999938964844,520.0
+105,Steps per episode,424.3999938964844,525.0
+106,Steps per episode,498.0,530.0
+107,Steps per episode,500.0,535.0
+108,Steps per episode,500.0,540.0
+109,Steps per episode,455.79998779296875,545.0
+110,Steps per episode,491.20001220703125,550.0
+111,Steps per episode,500.0,555.0
+112,Steps per episode,437.79998779296875,560.0
+113,Steps per episode,500.0,565.0
+114,Steps per episode,500.0,570.0
+115,Steps per episode,500.0,575.0
+116,Steps per episode,473.0,580.0
+117,Steps per episode,500.0,585.0
+118,Steps per episode,500.0,590.0
+119,Steps per episode,484.3999938964844,595.0
+120,Steps per episode,494.0,600.0
+121,Steps per episode,494.0,605.0
+122,Steps per episode,467.20001220703125,610.0
+123,Steps per episode,482.79998779296875,615.0
+124,Steps per episode,500.0,620.0
+125,Steps per episode,442.6000061035156,625.0
+126,Steps per episode,444.20001220703125,630.0
+127,Steps per episode,500.0,635.0
+128,Steps per episode,457.0,640.0
+129,Steps per episode,441.79998779296875,645.0
+130,Steps per episode,500.0,650.0
+131,Steps per episode,485.20001220703125,655.0
+132,Steps per episode,500.0,660.0
+133,Steps per episode,500.0,665.0
+134,Steps per episode,500.0,670.0
+135,Steps per episode,500.0,675.0
+136,Steps per episode,500.0,680.0
+137,Steps per episode,456.0,685.0
+138,Steps per episode,364.6000061035156,690.0
+139,Steps per episode,476.20001220703125,695.0
+140,Steps per episode,500.0,700.0
+141,Steps per episode,373.3999938964844,705.0
+142,Steps per episode,490.20001220703125,710.0
+143,Steps per episode,491.79998779296875,715.0
+144,Steps per episode,491.3999938964844,720.0
+145,Steps per episode,500.0,725.0
+146,Steps per episode,500.0,730.0
+147,Steps per episode,500.0,735.0
+148,Steps per episode,448.0,740.0
+149,Steps per episode,500.0,745.0
+150,Steps per episode,446.79998779296875,750.0
+151,Steps per episode,500.0,755.0
+152,Steps per episode,500.0,760.0
+153,Steps per episode,500.0,765.0
+154,Steps per episode,500.0,770.0
+155,Steps per episode,500.0,775.0
+156,Steps per episode,500.0,780.0
+157,Steps per episode,403.79998779296875,785.0
+158,Steps per episode,500.0,790.0
+159,Steps per episode,464.20001220703125,795.0
+160,Steps per episode,431.20001220703125,800.0
+161,Steps per episode,425.20001220703125,805.0
+162,Steps per episode,444.0,810.0
+163,Steps per episode,473.3999938964844,815.0
+164,Steps per episode,484.6000061035156,820.0
+165,Steps per episode,452.20001220703125,825.0
+166,Steps per episode,500.0,830.0
+167,Steps per episode,400.3999938964844,835.0
+168,Steps per episode,471.79998779296875,840.0
+169,Steps per episode,396.79998779296875,845.0
+170,Steps per episode,500.0,850.0
+171,Steps per episode,437.0,855.0
+172,Steps per episode,490.79998779296875,860.0
+173,Steps per episode,478.0,865.0
+174,Steps per episode,493.3999938964844,870.0
+175,Steps per episode,464.3999938964844,875.0
+176,Steps per episode,367.0,880.0
+177,Steps per episode,465.20001220703125,885.0
+178,Steps per episode,423.20001220703125,890.0
+179,Steps per episode,445.3999938964844,895.0
+180,Steps per episode,440.3999938964844,900.0
+181,Steps per episode,474.0,905.0
+182,Steps per episode,415.3999938964844,910.0
+183,Steps per episode,432.3999938964844,915.0
+184,Steps per episode,452.0,920.0
+185,Steps per episode,403.20001220703125,925.0
+186,Steps per episode,364.6000061035156,930.0
+187,Steps per episode,409.20001220703125,935.0
+188,Steps per episode,428.20001220703125,940.0
+189,Steps per episode,470.79998779296875,945.0
+190,Steps per episode,406.3999938964844,950.0
+191,Steps per episode,353.6000061035156,955.0
+192,Steps per episode,394.20001220703125,960.0
+193,Steps per episode,421.6000061035156,965.0
+194,Steps per episode,376.3999938964844,970.0
+195,Steps per episode,362.6000061035156,975.0
+196,Steps per episode,338.20001220703125,980.0
+0,Mean Reward Against Episodes,-1.0,0.0
+1,Mean Reward Against Episodes,21.36479949951172,5.0
+2,Mean Reward Against Episodes,1.0,10.0
+3,Mean Reward Against Episodes,-0.4000000059604645,15.0
+4,Mean Reward Against Episodes,-0.20000000298023224,20.0
+5,Mean Reward Against Episodes,-1.598721113108578e-15,25.0
+6,Mean Reward Against Episodes,-0.4000000059604645,30.0
+7,Mean Reward Against Episodes,20.73080062866211,35.0
+8,Mean Reward Against Episodes,-1.598721113108578e-15,40.0
+9,Mean Reward Against Episodes,0.6000000238418579,45.0
+10,Mean Reward Against Episodes,-0.4000000059604645,50.0
+11,Mean Reward Against Episodes,-1.598721113108578e-15,55.0
+12,Mean Reward Against Episodes,1.600000023841858,60.0
+13,Mean Reward Against Episodes,1.399999976158142,65.0
+14,Mean Reward Against Episodes,40.358001708984375,70.0
+15,Mean Reward Against Episodes,1.0,75.0
+16,Mean Reward Against Episodes,-1.598721113108578e-15,80.0
+17,Mean Reward Against Episodes,1.7999999523162842,85.0
+18,Mean Reward Against Episodes,1.600000023841858,90.0
+19,Mean Reward Against Episodes,0.6000000238418579,95.0
+20,Mean Reward Against Episodes,1.0,100.0
+21,Mean Reward Against Episodes,0.20000000298023224,105.0
+22,Mean Reward Against Episodes,0.6000000238418579,110.0
+23,Mean Reward Against Episodes,1.7999999523162842,115.0
+24,Mean Reward Against Episodes,1.7999999523162842,120.0
+25,Mean Reward Against Episodes,-0.20000000298023224,125.0
+26,Mean Reward Against Episodes,21.038999557495117,130.0
+27,Mean Reward Against Episodes,41.2932014465332,135.0
+28,Mean Reward Against Episodes,1.0,140.0
+29,Mean Reward Against Episodes,1.2000000476837158,145.0
+30,Mean Reward Against Episodes,20.42919921875,150.0
+31,Mean Reward Against Episodes,-1.598721113108578e-15,155.0
+32,Mean Reward Against Episodes,1.0,160.0
+33,Mean Reward Against Episodes,1.2000000476837158,165.0
+34,Mean Reward Against Episodes,-0.20000000298023224,170.0
+35,Mean Reward Against Episodes,-1.5543122344752192e-15,175.0
+36,Mean Reward Against Episodes,1.7999999523162842,180.0
+37,Mean Reward Against Episodes,0.4000000059604645,185.0
+38,Mean Reward Against Episodes,19.743200302124023,190.0
+39,Mean Reward Against Episodes,0.20000000298023224,195.0
+40,Mean Reward Against Episodes,1.0,200.0
+41,Mean Reward Against Episodes,21.677799224853516,205.0
+42,Mean Reward Against Episodes,0.4000000059604645,210.0
+43,Mean Reward Against Episodes,-0.6000000238418579,215.0
+44,Mean Reward Against Episodes,0.800000011920929,220.0
+45,Mean Reward Against Episodes,-0.6000000238418579,225.0
+46,Mean Reward Against Episodes,1.399999976158142,230.0
+47,Mean Reward Against Episodes,2.4000000953674316,235.0
+48,Mean Reward Against Episodes,21.563400268554688,240.0
+49,Mean Reward Against Episodes,1.2000000476837158,245.0
+50,Mean Reward Against Episodes,0.20000000298023224,250.0
+51,Mean Reward Against Episodes,1.0,255.0
+52,Mean Reward Against Episodes,0.4000000059604645,260.0
+53,Mean Reward Against Episodes,21.908000946044922,265.0
+54,Mean Reward Against Episodes,22.224599838256836,270.0
+55,Mean Reward Against Episodes,-0.6000000238418579,275.0
+56,Mean Reward Against Episodes,0.4000000059604645,280.0
+57,Mean Reward Against Episodes,-0.20000000298023224,285.0
+58,Mean Reward Against Episodes,41.79199981689453,290.0
+59,Mean Reward Against Episodes,1.0,295.0
+60,Mean Reward Against Episodes,0.6000000238418579,300.0
+61,Mean Reward Against Episodes,0.6000000238418579,305.0
+62,Mean Reward Against Episodes,21.26759910583496,310.0
+63,Mean Reward Against Episodes,41.649200439453125,315.0
+64,Mean Reward Against Episodes,21.55459976196289,320.0
+65,Mean Reward Against Episodes,21.813600540161133,325.0
+66,Mean Reward Against Episodes,22.292400360107422,330.0
+67,Mean Reward Against Episodes,21.584199905395508,335.0
+68,Mean Reward Against Episodes,0.4000000059604645,340.0
+69,Mean Reward Against Episodes,2.0,345.0
+70,Mean Reward Against Episodes,-0.800000011920929,350.0
+71,Mean Reward Against Episodes,0.4000000059604645,355.0
+72,Mean Reward Against Episodes,-0.4000000059604645,360.0
+73,Mean Reward Against Episodes,40.606998443603516,365.0
+74,Mean Reward Against Episodes,-1.0,370.0
+75,Mean Reward Against Episodes,0.800000011920929,375.0
+76,Mean Reward Against Episodes,0.20000000298023224,380.0
+77,Mean Reward Against Episodes,0.800000011920929,385.0
+78,Mean Reward Against Episodes,-0.6000000238418579,390.0
+79,Mean Reward Against Episodes,40.891998291015625,395.0
+80,Mean Reward Against Episodes,1.399999976158142,400.0
+81,Mean Reward Against Episodes,20.870399475097656,405.0
+82,Mean Reward Against Episodes,0.4000000059604645,410.0
+83,Mean Reward Against Episodes,-0.20000000298023224,415.0
+84,Mean Reward Against Episodes,21.86639976501465,420.0
+85,Mean Reward Against Episodes,0.20000000298023224,425.0
+86,Mean Reward Against Episodes,20.749399185180664,430.0
+87,Mean Reward Against Episodes,0.800000011920929,435.0
+88,Mean Reward Against Episodes,-0.20000000298023224,440.0
+89,Mean Reward Against Episodes,-0.20000000298023224,445.0
+90,Mean Reward Against Episodes,-1.0,450.0
+91,Mean Reward Against Episodes,0.6000000238418579,455.0
+92,Mean Reward Against Episodes,0.800000011920929,460.0
+93,Mean Reward Against Episodes,0.4000000059604645,465.0
+94,Mean Reward Against Episodes,0.20000000298023224,470.0
+95,Mean Reward Against Episodes,-0.4000000059604645,475.0
+96,Mean Reward Against Episodes,20.010000228881836,480.0
+97,Mean Reward Against Episodes,20.327199935913086,485.0
+98,Mean Reward Against Episodes,-1.0,490.0
+99,Mean Reward Against Episodes,0.6000000238418579,495.0
+100,Mean Reward Against Episodes,-0.4000000059604645,500.0
+101,Mean Reward Against Episodes,20.641199111938477,505.0
+102,Mean Reward Against Episodes,-0.20000000298023224,510.0
+103,Mean Reward Against Episodes,0.4000000059604645,515.0
+104,Mean Reward Against Episodes,21.386600494384766,520.0
+105,Mean Reward Against Episodes,61.302799224853516,525.0
+106,Mean Reward Against Episodes,20.00860023498535,530.0
+107,Mean Reward Against Episodes,-0.6000000238418579,535.0
+108,Mean Reward Against Episodes,0.800000011920929,540.0
+109,Mean Reward Against Episodes,21.57740020751953,545.0
+110,Mean Reward Against Episodes,21.23539924621582,550.0
+111,Mean Reward Against Episodes,1.399999976158142,555.0
+112,Mean Reward Against Episodes,20.64940071105957,560.0
+113,Mean Reward Against Episodes,0.20000000298023224,565.0
+114,Mean Reward Against Episodes,0.800000011920929,570.0
+115,Mean Reward Against Episodes,1.0,575.0
+116,Mean Reward Against Episodes,21.30820083618164,580.0
+117,Mean Reward Against Episodes,0.20000000298023224,585.0
+118,Mean Reward Against Episodes,-1.6431300976210554e-15,590.0
+119,Mean Reward Against Episodes,21.86280059814453,595.0
+120,Mean Reward Against Episodes,20.024599075317383,600.0
+121,Mean Reward Against Episodes,21.42460060119629,605.0
+122,Mean Reward Against Episodes,21.531400680541992,610.0
+123,Mean Reward Against Episodes,40.86899948120117,615.0
+124,Mean Reward Against Episodes,2.4000000953674316,620.0
+125,Mean Reward Against Episodes,41.430198669433594,625.0
+126,Mean Reward Against Episodes,41.22420120239258,630.0
+127,Mean Reward Against Episodes,1.0,635.0
+128,Mean Reward Against Episodes,21.772199630737305,640.0
+129,Mean Reward Against Episodes,21.832799911499023,645.0
+130,Mean Reward Against Episodes,0.4000000059604645,650.0
+131,Mean Reward Against Episodes,22.059799194335938,655.0
+132,Mean Reward Against Episodes,-1.0,660.0
+133,Mean Reward Against Episodes,-0.20000000298023224,665.0
+134,Mean Reward Against Episodes,0.800000011920929,670.0
+135,Mean Reward Against Episodes,1.399999976158142,675.0
+136,Mean Reward Against Episodes,0.4000000059604645,680.0
+137,Mean Reward Against Episodes,20.576200485229492,685.0
+138,Mean Reward Against Episodes,61.74300003051758,690.0
+139,Mean Reward Against Episodes,19.695600509643555,695.0
+140,Mean Reward Against Episodes,1.600000023841858,700.0
+141,Mean Reward Against Episodes,62.107398986816406,705.0
+142,Mean Reward Against Episodes,20.43939971923828,710.0
+143,Mean Reward Against Episodes,22.033000946044922,715.0
+144,Mean Reward Against Episodes,21.434999465942383,720.0
+145,Mean Reward Against Episodes,1.2000000476837158,725.0
+146,Mean Reward Against Episodes,-0.20000000298023224,730.0
+147,Mean Reward Against Episodes,1.7999999523162842,735.0
+148,Mean Reward Against Episodes,43.608001708984375,740.0
+149,Mean Reward Against Episodes,1.600000023841858,745.0
+150,Mean Reward Against Episodes,20.81279945373535,750.0
+151,Mean Reward Against Episodes,1.600000023841858,755.0
+152,Mean Reward Against Episodes,1.600000023841858,760.0
+153,Mean Reward Against Episodes,1.2000000476837158,765.0
+154,Mean Reward Against Episodes,-0.4000000059604645,770.0
+155,Mean Reward Against Episodes,-0.4000000059604645,775.0
+156,Mean Reward Against Episodes,-0.20000000298023224,780.0
+157,Mean Reward Against Episodes,61.585601806640625,785.0
+158,Mean Reward Against Episodes,0.20000000298023224,790.0
+159,Mean Reward Against Episodes,22.743799209594727,795.0
+160,Mean Reward Against Episodes,21.075199127197266,800.0
+161,Mean Reward Against Episodes,40.49980163574219,805.0
+162,Mean Reward Against Episodes,20.224599838256836,810.0
+163,Mean Reward Against Episodes,21.306400299072266,815.0
+164,Mean Reward Against Episodes,42.062801361083984,820.0
+165,Mean Reward Against Episodes,21.991600036621094,825.0
+166,Mean Reward Against Episodes,2.5999999046325684,830.0
+167,Mean Reward Against Episodes,42.79840087890625,835.0
+168,Mean Reward Against Episodes,42.11320114135742,840.0
+169,Mean Reward Against Episodes,42.01319885253906,845.0
+170,Mean Reward Against Episodes,2.200000047683716,850.0
+171,Mean Reward Against Episodes,43.252601623535156,855.0
+172,Mean Reward Against Episodes,21.23740005493164,860.0
+173,Mean Reward Against Episodes,22.688400268554688,865.0
+174,Mean Reward Against Episodes,22.226600646972656,870.0
+175,Mean Reward Against Episodes,19.94260025024414,875.0
+176,Mean Reward Against Episodes,62.73320007324219,880.0
+177,Mean Reward Against Episodes,23.339399337768555,885.0
+178,Mean Reward Against Episodes,63.70859909057617,890.0
+179,Mean Reward Against Episodes,43.41859817504883,895.0
+180,Mean Reward Against Episodes,42.639400482177734,900.0
+181,Mean Reward Against Episodes,42.7046012878418,905.0
+182,Mean Reward Against Episodes,64.13960266113281,910.0
+183,Mean Reward Against Episodes,23.270999908447266,915.0
+184,Mean Reward Against Episodes,43.99300003051758,920.0
+185,Mean Reward Against Episodes,42.38759994506836,925.0
+186,Mean Reward Against Episodes,64.1416015625,930.0
+187,Mean Reward Against Episodes,42.763999938964844,935.0
+188,Mean Reward Against Episodes,64.28839874267578,940.0
+189,Mean Reward Against Episodes,43.11759948730469,945.0
+190,Mean Reward Against Episodes,63.974998474121094,950.0
+191,Mean Reward Against Episodes,84.18679809570312,955.0
+192,Mean Reward Against Episodes,64.02359771728516,960.0
+193,Mean Reward Against Episodes,65.91439819335938,965.0
+194,Mean Reward Against Episodes,85.49600219726562,970.0
+195,Mean Reward Against Episodes,63.95100021362305,975.0
+196,Mean Reward Against Episodes,104.84880065917969,980.0
+0,Mean Reward Against Steps,-1.0,500.0
+1,Mean Reward Against Steps,21.36479949951172,2794.0
+2,Mean Reward Against Steps,1.0,5294.0
+3,Mean Reward Against Steps,-0.4000000059604645,7794.0
+4,Mean Reward Against Steps,-0.20000000298023224,10294.0
+5,Mean Reward Against Steps,-1.598721113108578e-15,12794.0
+6,Mean Reward Against Steps,-0.4000000059604645,15294.0
+7,Mean Reward Against Steps,20.73080062866211,17631.0
+8,Mean Reward Against Steps,-1.598721113108578e-15,20131.0
+9,Mean Reward Against Steps,0.6000000238418579,22631.0
+10,Mean Reward Against Steps,-0.4000000059604645,25131.0
+11,Mean Reward Against Steps,-1.598721113108578e-15,27631.0
+12,Mean Reward Against Steps,1.600000023841858,30131.0
+13,Mean Reward Against Steps,1.399999976158142,32631.0
+14,Mean Reward Against Steps,40.358001708984375,34684.0
+15,Mean Reward Against Steps,1.0,37184.0
+16,Mean Reward Against Steps,-1.598721113108578e-15,39684.0
+17,Mean Reward Against Steps,1.7999999523162842,42184.0
+18,Mean Reward Against Steps,1.600000023841858,44684.0
+19,Mean Reward Against Steps,0.6000000238418579,47184.0
+20,Mean Reward Against Steps,1.0,49684.0
+21,Mean Reward Against Steps,0.20000000298023224,52184.0
+22,Mean Reward Against Steps,0.6000000238418579,54684.0
+23,Mean Reward Against Steps,1.7999999523162842,57184.0
+24,Mean Reward Against Steps,1.7999999523162842,59684.0
+25,Mean Reward Against Steps,-0.20000000298023224,62184.0
+26,Mean Reward Against Steps,21.038999557495117,64636.0
+27,Mean Reward Against Steps,41.2932014465332,67020.0
+28,Mean Reward Against Steps,1.0,69520.0
+29,Mean Reward Against Steps,1.2000000476837158,72020.0
+30,Mean Reward Against Steps,20.42919921875,74484.0
+31,Mean Reward Against Steps,-1.598721113108578e-15,76984.0
+32,Mean Reward Against Steps,1.0,79484.0
+33,Mean Reward Against Steps,1.2000000476837158,81984.0
+34,Mean Reward Against Steps,-0.20000000298023224,84484.0
+35,Mean Reward Against Steps,-1.5543122344752192e-15,86984.0
+36,Mean Reward Against Steps,1.7999999523162842,89484.0
+37,Mean Reward Against Steps,0.4000000059604645,91984.0
+38,Mean Reward Against Steps,19.743200302124023,94305.0
+39,Mean Reward Against Steps,0.20000000298023224,96805.0
+40,Mean Reward Against Steps,1.0,99305.0
+41,Mean Reward Against Steps,21.677799224853516,101708.0
+42,Mean Reward Against Steps,0.4000000059604645,104208.0
+43,Mean Reward Against Steps,-0.6000000238418579,106708.0
+44,Mean Reward Against Steps,0.800000011920929,109208.0
+45,Mean Reward Against Steps,-0.6000000238418579,111708.0
+46,Mean Reward Against Steps,1.399999976158142,114208.0
+47,Mean Reward Against Steps,2.4000000953674316,116708.0
+48,Mean Reward Against Steps,21.563400268554688,119004.0
+49,Mean Reward Against Steps,1.2000000476837158,121504.0
+50,Mean Reward Against Steps,0.20000000298023224,124004.0
+51,Mean Reward Against Steps,1.0,126504.0
+52,Mean Reward Against Steps,0.4000000059604645,129004.0
+53,Mean Reward Against Steps,21.908000946044922,131369.0
+54,Mean Reward Against Steps,22.224599838256836,133839.0
+55,Mean Reward Against Steps,-0.6000000238418579,136339.0
+56,Mean Reward Against Steps,0.4000000059604645,138839.0
+57,Mean Reward Against Steps,-0.20000000298023224,141339.0
+58,Mean Reward Against Steps,41.79199981689453,143600.0
+59,Mean Reward Against Steps,1.0,146100.0
+60,Mean Reward Against Steps,0.6000000238418579,148600.0
+61,Mean Reward Against Steps,0.6000000238418579,151100.0
+62,Mean Reward Against Steps,21.26759910583496,153516.0
+63,Mean Reward Against Steps,41.649200439453125,155705.0
+64,Mean Reward Against Steps,21.55459976196289,158012.0
+65,Mean Reward Against Steps,21.813600540161133,160245.0
+66,Mean Reward Against Steps,22.292400360107422,162630.0
+67,Mean Reward Against Steps,21.584199905395508,164900.0
+68,Mean Reward Against Steps,0.4000000059604645,167400.0
+69,Mean Reward Against Steps,2.0,169900.0
+70,Mean Reward Against Steps,-0.800000011920929,172400.0
+71,Mean Reward Against Steps,0.4000000059604645,174900.0
+72,Mean Reward Against Steps,-0.4000000059604645,177400.0
+73,Mean Reward Against Steps,40.606998443603516,179392.0
+74,Mean Reward Against Steps,-1.0,181892.0
+75,Mean Reward Against Steps,0.800000011920929,184392.0
+76,Mean Reward Against Steps,0.20000000298023224,186892.0
+77,Mean Reward Against Steps,0.800000011920929,189392.0
+78,Mean Reward Against Steps,-0.6000000238418579,191892.0
+79,Mean Reward Against Steps,40.891998291015625,194028.0
+80,Mean Reward Against Steps,1.399999976158142,196528.0
+81,Mean Reward Against Steps,20.870399475097656,198940.0
+82,Mean Reward Against Steps,0.4000000059604645,201440.0
+83,Mean Reward Against Steps,-0.20000000298023224,203940.0
+84,Mean Reward Against Steps,21.86639976501465,206357.0
+85,Mean Reward Against Steps,0.20000000298023224,208857.0
+86,Mean Reward Against Steps,20.749399185180664,211171.0
+87,Mean Reward Against Steps,0.800000011920929,213671.0
+88,Mean Reward Against Steps,-0.20000000298023224,216171.0
+89,Mean Reward Against Steps,-0.20000000298023224,218671.0
+90,Mean Reward Against Steps,-1.0,221171.0
+91,Mean Reward Against Steps,0.6000000238418579,223671.0
+92,Mean Reward Against Steps,0.800000011920929,226171.0
+93,Mean Reward Against Steps,0.4000000059604645,228671.0
+94,Mean Reward Against Steps,0.20000000298023224,231171.0
+95,Mean Reward Against Steps,-0.4000000059604645,233671.0
+96,Mean Reward Against Steps,20.010000228881836,236159.0
+97,Mean Reward Against Steps,20.327199935913086,238500.0
+98,Mean Reward Against Steps,-1.0,241000.0
+99,Mean Reward Against Steps,0.6000000238418579,243500.0
+100,Mean Reward Against Steps,-0.4000000059604645,246000.0
+101,Mean Reward Against Steps,20.641199111938477,248449.0
+102,Mean Reward Against Steps,-0.20000000298023224,250949.0
+103,Mean Reward Against Steps,0.4000000059604645,253449.0
+104,Mean Reward Against Steps,21.386600494384766,255716.0
+105,Mean Reward Against Steps,61.302799224853516,257838.0
+106,Mean Reward Against Steps,20.00860023498535,260328.0
+107,Mean Reward Against Steps,-0.6000000238418579,262828.0
+108,Mean Reward Against Steps,0.800000011920929,265328.0
+109,Mean Reward Against Steps,21.57740020751953,267607.0
+110,Mean Reward Against Steps,21.23539924621582,270063.0
+111,Mean Reward Against Steps,1.399999976158142,272563.0
+112,Mean Reward Against Steps,20.64940071105957,274752.0
+113,Mean Reward Against Steps,0.20000000298023224,277252.0
+114,Mean Reward Against Steps,0.800000011920929,279752.0
+115,Mean Reward Against Steps,1.0,282252.0
+116,Mean Reward Against Steps,21.30820083618164,284617.0
+117,Mean Reward Against Steps,0.20000000298023224,287117.0
+118,Mean Reward Against Steps,-1.6431300976210554e-15,289617.0
+119,Mean Reward Against Steps,21.86280059814453,292039.0
+120,Mean Reward Against Steps,20.024599075317383,294509.0
+121,Mean Reward Against Steps,21.42460060119629,296979.0
+122,Mean Reward Against Steps,21.531400680541992,299315.0
+123,Mean Reward Against Steps,40.86899948120117,301729.0
+124,Mean Reward Against Steps,2.4000000953674316,304229.0
+125,Mean Reward Against Steps,41.430198669433594,306442.0
+126,Mean Reward Against Steps,41.22420120239258,308663.0
+127,Mean Reward Against Steps,1.0,311163.0
+128,Mean Reward Against Steps,21.772199630737305,313448.0
+129,Mean Reward Against Steps,21.832799911499023,315657.0
+130,Mean Reward Against Steps,0.4000000059604645,318157.0
+131,Mean Reward Against Steps,22.059799194335938,320583.0
+132,Mean Reward Against Steps,-1.0,323083.0
+133,Mean Reward Against Steps,-0.20000000298023224,325583.0
+134,Mean Reward Against Steps,0.800000011920929,328083.0
+135,Mean Reward Against Steps,1.399999976158142,330583.0
+136,Mean Reward Against Steps,0.4000000059604645,333083.0
+137,Mean Reward Against Steps,20.576200485229492,335363.0
+138,Mean Reward Against Steps,61.74300003051758,337186.0
+139,Mean Reward Against Steps,19.695600509643555,339567.0
+140,Mean Reward Against Steps,1.600000023841858,342067.0
+141,Mean Reward Against Steps,62.107398986816406,343934.0
+142,Mean Reward Against Steps,20.43939971923828,346385.0
+143,Mean Reward Against Steps,22.033000946044922,348844.0
+144,Mean Reward Against Steps,21.434999465942383,351301.0
+145,Mean Reward Against Steps,1.2000000476837158,353801.0
+146,Mean Reward Against Steps,-0.20000000298023224,356301.0
+147,Mean Reward Against Steps,1.7999999523162842,358801.0
+148,Mean Reward Against Steps,43.608001708984375,361041.0
+149,Mean Reward Against Steps,1.600000023841858,363541.0
+150,Mean Reward Against Steps,20.81279945373535,365775.0
+151,Mean Reward Against Steps,1.600000023841858,368275.0
+152,Mean Reward Against Steps,1.600000023841858,370775.0
+153,Mean Reward Against Steps,1.2000000476837158,373275.0
+154,Mean Reward Against Steps,-0.4000000059604645,375775.0
+155,Mean Reward Against Steps,-0.4000000059604645,378275.0
+156,Mean Reward Against Steps,-0.20000000298023224,380775.0
+157,Mean Reward Against Steps,61.585601806640625,382794.0
+158,Mean Reward Against Steps,0.20000000298023224,385294.0
+159,Mean Reward Against Steps,22.743799209594727,387615.0
+160,Mean Reward Against Steps,21.075199127197266,389771.0
+161,Mean Reward Against Steps,40.49980163574219,391897.0
+162,Mean Reward Against Steps,20.224599838256836,394117.0
+163,Mean Reward Against Steps,21.306400299072266,396484.0
+164,Mean Reward Against Steps,42.062801361083984,398907.0
+165,Mean Reward Against Steps,21.991600036621094,401168.0
+166,Mean Reward Against Steps,2.5999999046325684,403668.0
+167,Mean Reward Against Steps,42.79840087890625,405670.0
+168,Mean Reward Against Steps,42.11320114135742,408029.0
+169,Mean Reward Against Steps,42.01319885253906,410013.0
+170,Mean Reward Against Steps,2.200000047683716,412513.0
+171,Mean Reward Against Steps,43.252601623535156,414698.0
+172,Mean Reward Against Steps,21.23740005493164,417152.0
+173,Mean Reward Against Steps,22.688400268554688,419542.0
+174,Mean Reward Against Steps,22.226600646972656,422009.0
+175,Mean Reward Against Steps,19.94260025024414,424331.0
+176,Mean Reward Against Steps,62.73320007324219,426166.0
+177,Mean Reward Against Steps,23.339399337768555,428492.0
+178,Mean Reward Against Steps,63.70859909057617,430608.0
+179,Mean Reward Against Steps,43.41859817504883,432835.0
+180,Mean Reward Against Steps,42.639400482177734,435037.0
+181,Mean Reward Against Steps,42.7046012878418,437407.0
+182,Mean Reward Against Steps,64.13960266113281,439484.0
+183,Mean Reward Against Steps,23.270999908447266,441646.0
+184,Mean Reward Against Steps,43.99300003051758,443906.0
+185,Mean Reward Against Steps,42.38759994506836,445922.0
+186,Mean Reward Against Steps,64.1416015625,447745.0
+187,Mean Reward Against Steps,42.763999938964844,449791.0
+188,Mean Reward Against Steps,64.28839874267578,451932.0
+189,Mean Reward Against Steps,43.11759948730469,454286.0
+190,Mean Reward Against Steps,63.974998474121094,456318.0
+191,Mean Reward Against Steps,84.18679809570312,458086.0
+192,Mean Reward Against Steps,64.02359771728516,460057.0
+193,Mean Reward Against Steps,65.91439819335938,462165.0
+194,Mean Reward Against Steps,85.49600219726562,464047.0
+195,Mean Reward Against Steps,63.95100021362305,465860.0
+196,Mean Reward Against Steps,104.84880065917969,467551.0

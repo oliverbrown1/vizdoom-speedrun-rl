@@ -23,48 +23,39 @@ def tflog2pandas(path):
         traceback.print_exc()
     return runlog_data
 
-#df=df[(df.metric != 'params/lr')&(df.metric != 'params/mm')&(df.metric != 'train/loss')] #delete the mentioned rows
-# df.to_csv("output.csv")
-# Load the TensorBoard logs
-# logdir = './files/summaries'
-# logs = tf.data.experimental.load(logdir)
+# exp38 -> frameskip=4, decay_rate = 0.9995, living_reward = -0.001, batch_size = 128, episodes=  1000
+# exp39 -> batch_size = 64, update_target_rate = 0.25
+# exp40 -> update_target_rate = 0.2, entropy_Rate = 1e-3
 
-# Convert to DataFrame
-# df = tf.data.experimental.to_dataframe(logs)
+# mwh_1 ->  1000 episodes, replay_size = 100000
+# mwh_2 -> hyperparameters found from A3C -> update_target_Rate = 0.2, episode_timeout = 3000
+# files44 -> replay_size = 100k, episode_timeout_steps = 3000
+# files45 -> lr=1e-6
+filename = "exp_47"
+
+df=tflog2pandas(f"./{filename}")
 
 
-
-
-# maze_4 -> lr=1e-6, gamma = 0.99, living_reward = -0.001, network_update_interval = 64 steps
-# maze_5 -> lr=1e-5, gradient_clip_val=10
-# maze_6 -> change episode timeout to 2000 steps
-# maze_7 -> 1000 steps
-# maze_8 -> 4000 steps
-# maze_10 -> 4000 steps, lr=1e-5, gradient_clip_val = 20
-# maze_11 -> lr = 1e-4
-# maze_12 -> lr=1e-5, gamma = 0.95
-
-filename = "maze_12"
-
-# mwh_18 -> 3000 steps
-# mwh_19 -> 4000 steps
-
-df=tflog2pandas(f"./{filename}/summaries/agent_0")
 # Save to CSV
 df.to_csv(f"./results/{filename}.csv")
 # df.to_csv(f'./results/{filename}.csv', index=False)
 
 parameters = "actions=FORWARD, SPEED, TLEFT, TRIGHT\n"
-parameters += "action_combinations=all\n"
-parameters += "max_episodes=1000\n"
-parameters += "num_workers=8\n"
+parameters += "lr=1e-5\n"
 parameters += "living_reward=-0.001\n"
-parameters += "gamma=0.95\n"
-parameters += "lr=1e-4\n"
+parameters += "gamma=0.99\n"
+parameters += "epsilon=1\n"
+parameters += "batch_size=64\n"
+parameters += "max_episodes=3000\n"
+parameters += "entropy_rate=1e-4\n"
+parameters += "update_target_rate=0.25s\n"
+parameters += "alpha=0.6\n"
 parameters += "frameskip=4\n"
-parameters += "network_update_interval=64 steps\n"
-parameters += "gradient_clip_val=20\n"
-parameters += "notes=episode timeout 4000 steps"
+parameters += "decay_rate=0.9995 (begins after 200 episodes)\n"
+parameters += "experience_replay_size=200k\n"
+parameters += "gradient_clip_val = 10\n"
+parameters += "episode_timeout_steps = 2000"
+
 
 
 

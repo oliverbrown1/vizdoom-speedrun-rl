@@ -61,7 +61,7 @@ class ACNetwork(object):
                 local_vars = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope)
                 self.gradients = tf.gradients(self.loss, local_vars)
                 self.var_norms = tf.global_norm(local_vars)
-                grads, self.grad_norms = tf.clip_by_global_norm(self.gradients, 30.0)
+                grads, self.grad_norms = tf.clip_by_global_norm(self.gradients, cfg.gradient_clip_val)
 
                 # Apply local gradients to global network
                 global_vars = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, 'global')

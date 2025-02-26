@@ -7,9 +7,9 @@ from scipy.interpolate import interp1d
 from scipy.interpolate import make_interp_spline
 from scipy.ndimage import gaussian_filter1d
 
-name = "maze"
+name = "exp"
 # both inclusive
-nums = [9,10,11,12]
+nums = [42,43,44,45,46]
 # num_start, num_end = 1,3
 
 def load_experiment_data(name, nums):
@@ -53,7 +53,7 @@ def load_experiment_data(name, nums):
     
     return experiments
 
-def plot_training_curves(experiments, metric_name="Mean Reward Against Episodes"):
+def plot_training_curves(experiments, metric_name, sigma):
     """
     Plot training curves for a given metric (by default "Mean Reward Against Episodes")
     for each experiment.
@@ -72,7 +72,7 @@ def plot_training_curves(experiments, metric_name="Mean Reward Against Episodes"
         # X_=np.linspace(x.min(), x.max(), 500)
         # spline = make_interp_spline(x, y, k=3)
         # Y_= spline(X_)
-        sigma = 5 # Adjust for more/less smoothing
+        # # Adjust for more/less smoothing
         y_smoothed = gaussian_filter1d(y, sigma=sigma)
         X_ = x
         Y_ = y_smoothed
@@ -144,7 +144,7 @@ if __name__ == "__main__":
     experiments = load_experiment_data(name, nums)
     
     # Plot the training curves (reward vs. step)
-    plot_training_curves(experiments, metric_name="Mean Reward Against Episodes")
+    plot_training_curves(experiments, metric_name="reward_against_episodes", sigma=5)
     
     # Aggregate the final rewards and parameters into a summary DataFrame.
     # summary_df = aggregate_final_rewards(experiments, metric_name="Mean Reward Against Episodes")
