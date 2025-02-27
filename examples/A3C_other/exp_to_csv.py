@@ -43,8 +43,9 @@ def tflog2pandas(path):
 # maze_10 -> 4000 steps, lr=1e-5, gradient_clip_val = 20
 # maze_11 -> lr = 1e-4
 # maze_12 -> lr=1e-5, gamma = 0.95
+# maze_13 -> maze_10 (gamma = 0.99) and modified reward system (armour bonus +1 -> +0.1)
 
-filename = "maze_12"
+filename = "maze_13"
 
 # mwh_18 -> 3000 steps
 # mwh_19 -> 4000 steps
@@ -59,12 +60,12 @@ parameters += "action_combinations=all\n"
 parameters += "max_episodes=1000\n"
 parameters += "num_workers=8\n"
 parameters += "living_reward=-0.001\n"
-parameters += "gamma=0.95\n"
-parameters += "lr=1e-4\n"
+parameters += "gamma=0.99\n"
+parameters += "lr=1e-5\n"
 parameters += "frameskip=4\n"
 parameters += "network_update_interval=64 steps\n"
 parameters += "gradient_clip_val=20\n"
-parameters += "notes=episode timeout 4000 steps"
+parameters += "notes=episode timeout 4000 steps, armour bonuses give +0.1 instead of +1"
 
 
 

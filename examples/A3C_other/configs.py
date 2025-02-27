@@ -18,15 +18,16 @@ new_img_dim = (108, 60)
 # maze_10 -> 4000 steps, lr=1e-5, gradient_clip_val = 20
 # maze_11 -> lr = 1e-4
 # maze_12 -> lr=1e-5, gamma = 0.95
+# maze_13 -> maze_10 (gamma = 0.99) and modified reward system (armour bonus +1 -> +0.1)
 
-filepath="maze_12"
+filepath="maze_13"
 
 # hyperparameters we control
 
 max_episodes = 1000
 num_workers= 8
 living_reward = -0.001
-gamma=0.95
+gamma=0.99
 lr=1e-5
 frameskip=4
 gradient_clip_val = 20

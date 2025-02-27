@@ -15,8 +15,11 @@ parser = argparse.ArgumentParser()
 # files45 -> lr=1e-6
 # files46 -> lr=1e-5, episode_timeout_steps = 2000, update_target_rate = 0.25, episodes = 3000
 # files47 -> replay_size = 200k
+# files48 -> replay_size = 100k
 
-filename = "exp_47"
+# mwh_3 -> episode_timeout = 2000, gradient_clip_val = 20
+
+filename = "exp_48"
 
 # # Possible actions
 # shoot = [1, 0, 0]
@@ -163,7 +166,7 @@ model_arg.add_argument("--num_frames", type=int,
 mem_arg = add_argument_group("Memory")
 
 mem_arg.add_argument("--cap", type=int,
-                       default=200000,
+                       default=100000,
                        help="Maximum number of transitions in replay memory")
 
 # ----------------------------------------

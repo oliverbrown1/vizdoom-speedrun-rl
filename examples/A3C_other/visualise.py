@@ -9,7 +9,7 @@ from scipy.ndimage import gaussian_filter1d
 
 name = "maze"
 # both inclusive
-nums = [9,10,11,12]
+nums = [8,10,12]
 # num_start, num_end = 1,3
 
 def load_experiment_data(name, nums):
@@ -144,7 +144,7 @@ if __name__ == "__main__":
     experiments = load_experiment_data(name, nums)
     
     # Plot the training curves (reward vs. step)
-    plot_training_curves(experiments, metric_name="Mean Reward Against Episodes")
+    plot_training_curves(experiments, metric_name="Steps per episode")
     
     # Aggregate the final rewards and parameters into a summary DataFrame.
     # summary_df = aggregate_final_rewards(experiments, metric_name="Mean Reward Against Episodes")

@@ -7,9 +7,9 @@ from scipy.interpolate import interp1d
 from scipy.interpolate import make_interp_spline
 from scipy.ndimage import gaussian_filter1d
 
-name = "exp"
+name = "mwh"
 # both inclusive
-nums = [42,43,44,45,46]
+nums = [1,2]
 # num_start, num_end = 1,3
 
 def load_experiment_data(name, nums):
