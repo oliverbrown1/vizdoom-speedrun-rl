@@ -44,15 +44,16 @@ def tflog2pandas(path):
 # maze_11 -> lr = 1e-4
 # maze_12 -> lr=1e-5, gamma = 0.95
 # maze_13 -> maze_10 (gamma = 0.99) and modified reward system (armour bonus +1 -> +0.1)
+# maze_14 -> armour bonus +0.1 -> +0.5
+# maze_4 -> lr=1e-4, episode_timeout = 3000
+# maze_5 -> episode_timeout = 5000
+# maze_6 -> episode_timeout = 4000, update_target_rate = 0.1
 
-filename = "maze_13"
-
-# mwh_18 -> 3000 steps
-# mwh_19 -> 4000 steps
+filename = "maze_demo_4"
 
 df=tflog2pandas(f"./{filename}/summaries/agent_0")
 # Save to CSV
-df.to_csv(f"./results/{filename}.csv")
+df.to_csv(f"./demo/{filename}.csv")
 # df.to_csv(f'./results/{filename}.csv', index=False)
 
 parameters = "actions=FORWARD, SPEED, TLEFT, TRIGHT\n"
@@ -65,9 +66,9 @@ parameters += "lr=1e-5\n"
 parameters += "frameskip=4\n"
 parameters += "network_update_interval=64 steps\n"
 parameters += "gradient_clip_val=20\n"
-parameters += "notes=episode timeout 4000 steps, armour bonuses give +0.1 instead of +1"
+parameters += "notes=episode timeout 2000 steps"
 
 
 
-with open(f"./results/{filename}.txt", "w") as file:
+with open(f"./demo/{filename}.txt", "w") as file:
     file.write(parameters)

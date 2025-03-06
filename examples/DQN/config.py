@@ -9,17 +9,9 @@ parser = argparse.ArgumentParser()
 # we want to focus on laerning stability
 # increase the discount value
 
-# mwh_1 ->  1000 episodes, replay_size = 100000
-# mwh_2 -> hyperparameters found from A3C -> update_target_Rate = 0.2, episode_timeout = 3000
-# files44 -> replay_size = 100k, episode_timeout_steps = 3000
-# files45 -> lr=1e-6
-# files46 -> lr=1e-5, episode_timeout_steps = 2000, update_target_rate = 0.25, episodes = 3000
-# files47 -> replay_size = 200k
-# files48 -> replay_size = 100k
+# exp_main
 
-# mwh_3 -> episode_timeout = 2000, gradient_clip_val = 20
-
-filename = "exp_48"
+filename = "exp_main"
 
 # # Possible actions
 # shoot = [1, 0, 0]
@@ -58,6 +50,10 @@ train_arg.add_argument("--learning_rate", type=float,
                        default=1e-5,
                        help="Learning rate (gradient step size)")
 
+train_arg.add_argument("--gradient_clip_val", type=float,
+                       default=10,
+                       help="Amount to clip gradients by (stabilisation)")
+
 train_arg.add_argument("--living_reward", type=float,
                        default=-0.001,
                        help="Living reward for the agent")
@@ -83,7 +79,7 @@ train_arg.add_argument("--batch_size", type=int,
                        help="Number of experiences to sample from memory during training")
 
 train_arg.add_argument("--episodes", type=int,
-                       default=3000,
+                       default=5100,
                        help="Number of episodes to train on")
 
 train_arg.add_argument("--entropy_rate", type=int,

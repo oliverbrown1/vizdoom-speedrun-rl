@@ -32,7 +32,25 @@ def tflog2pandas(path):
 # files44 -> replay_size = 100k, episode_timeout_steps = 3000
 # files45 -> lr=1e-6
 # mwh_3 -> gradient_clip_val = 20, episode_timeout = 2000, lr=1e-6
-filename = "mwh_3"
+# mwh_3 -> episode_timeout = 2000, gradient_clip_val = 10
+# mwh_4 -> gradient_clip_val = 20, lr=1e-4
+# mwh_5 -> lr=1e-6
+# mwh_6 -> episode_timeout = 3000, gradient_clip_val = 30
+# mwh_7 -> update_target_rate=  0.1
+# mwh_8 -> update_target_rate = 0.2, discount = 0.97
+
+# maze_4 -> lr=1e-4, episode_timeout = 3000
+# maze_5 -> episode_timeout = 5000
+# maze_6 -> episode_timeout = 4000, update_target_rate = 0.1
+
+# maze_7 -> update_target_rate = 0.2
+# maze_8 -> update_target_rate = 0.3
+# maze_9 -> update_Target_Rate = 0.25, gamma = 0.95
+# maze_10 -> gamma = 0.9
+
+
+
+filename = "maze_10"
 
 df=tflog2pandas(f"./{filename}")
 
@@ -42,20 +60,20 @@ df.to_csv(f"./results/{filename}.csv")
 # df.to_csv(f'./results/{filename}.csv', index=False)
 
 parameters = "actions=FORWARD, SPEED, TLEFT, TRIGHT\n"
-parameters += "lr=1e-6\n"
+parameters += "lr=1e-4\n"
 parameters += "living_reward=-0.001\n"
-parameters += "gamma=0.99\n"
+parameters += "gamma=0.9\n"
 parameters += "epsilon=1\n"
 parameters += "batch_size=64\n"
 parameters += "max_episodes=1000\n"
 parameters += "entropy_rate=1e-4\n"
-parameters += "update_target_rate=0.2\n"
+parameters += "update_target_rate=0.25\n"
 parameters += "alpha=0.6\n"
 parameters += "frameskip=4\n"
 parameters += "decay_rate=0.9995 (begins after 200 episodes)\n"
 parameters += "experience_replay_size=100k\n"
 parameters += "gradient_clip_val = 20\n"
-parameters += "episode_timeout_steps = 2000"
+parameters += "episode_timeout_steps = 4000"
 
 
 

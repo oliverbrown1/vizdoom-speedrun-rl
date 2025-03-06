@@ -7,9 +7,9 @@ from scipy.interpolate import interp1d
 from scipy.interpolate import make_interp_spline
 from scipy.ndimage import gaussian_filter1d
 
-name = "mwh"
+name = "exp"
 # both inclusive
-nums = [1,2]
+nums = [43,48]
 # num_start, num_end = 1,3
 
 def load_experiment_data(name, nums):
@@ -138,6 +138,18 @@ def plot_parameter_vs_reward(summary_df, parameter_name):
     plt.tight_layout()
     plt.show()
 
+
+def calculate_statistics(experiment, metric):
+    df = experiment['results']
+    df_metric = df[df['metric'] == metric]
+    average =  df_metric['value'].values.mean()
+    minimum = df_metric['value'].values.min()
+    variance = df_metric['value'].values.var()
+
+    print(f"Average: {average}, Min: {minimum} Var: {variance}")
+
+
+
 if __name__ == "__main__":
     # Set the directory containing your experiment CSV and TXT files.
     os.chdir("./results")
@@ -145,6 +157,7 @@ if __name__ == "__main__":
     
     # Plot the training curves (reward vs. step)
     plot_training_curves(experiments, metric_name="reward_against_episodes", sigma=5)
+    # calculate_statistics(experiments[0], "reward_against_steps")
     
     # Aggregate the final rewards and parameters into a summary DataFrame.
     # summary_df = aggregate_final_rewards(experiments, metric_name="Mean Reward Against Episodes")

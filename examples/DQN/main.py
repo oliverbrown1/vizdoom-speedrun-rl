@@ -87,12 +87,13 @@ class DQN(object):
         log_path = cfg.log_dir
         self.writer = SummaryWriter(log_path)
 
-    def logger(self, tape, loss, rewards):
+    def logger(self, tape, loss, rewards, steps):
         if self.global_step.numpy() % cfg.log_freq == 0:
             # Log scalars
-            self.writer.add_scalar('loss', loss.numpy(), self.global_step)
-            self.writer.add_scalar('reward against episodes', np.mean(rewards[-cfg.log_freq:]), self.global_step)
-            self.writer.add_scalar('reward against steps', np.mean(rewards[-cfg.log_freq:]), self.true_global_step)
+            # self.writer.add_scalar('loss', loss.numpy(), self.global_step)
+            # self.writer.add_scalar('reward against episodes', np.mean(rewards[-cfg.log_freq:]), self.global_step)
+            # self.writer.add_scalar('reward against steps', np.mean(rewards[-cfg.log_freq:]), self.true_global_step)
+            self.writer.add_scalar("steps against episodes", np.mean(steps[-cfg.log_freq:]), self.global_step)
             self.writer.flush()
             
             # Log weight scalars
@@ -114,7 +115,7 @@ class DQN(object):
     def update_target(self):
         self.target.set_weights(self.model.get_weights())
 
-    def update(self, episode_rewards):
+    def update(self, episode_rewards, episode_steps):
         # Fetch batch of experiences
         s0, logits, rewards, s1 = self.replay_memory.fetch()
         
@@ -144,10 +145,10 @@ class DQN(object):
             # Compare target q and predicted q (q = 0 on terminal state)
             loss = 1/2 * tf.reduce_mean(tf.losses.huber_loss(rewards + self.cfg.discount * target_q, q)) - entropy * self.cfg.entropy_rate
         
-        self.logger(tape, loss, episode_rewards)
+        self.logger(tape, loss, episode_rewards, episode_steps)
         # Compute/apply gradients
         grads = tape.gradient(loss, self.model.trainable_weights)
-        clipped_grads = [tf.clip_by_norm(g, 10) if g is not None else None for g in grads]
+        clipped_grads = [tf.clip_by_norm(g, self.cfg.gradient_clip_val) if g is not None else None for g in grads]
         # applied clipped gradients
         grads_and_vars = zip(clipped_grads, self.model.trainable_weights)
         self.optimizer.apply_gradients(grads_and_vars)
@@ -194,8 +195,10 @@ class DQN(object):
         self.saver.restore(tf.train.latest_checkpoint(self.cfg.save_dir))
         # decay_rate = 0.995
         episode_rewards=[]
+        episode_steps = []
         for episode in trange(self.cfg.episodes):
             # Reduce exploration rate linearly. Capped at 0.1 halfway through training
+            steps = 0
             if episode > 200:
                 if self.cfg.epsilon > 0.1:
                     # self.cfg.epsilon -= 0.9 / (0.5 * self.cfg.episodes)
@@ -219,6 +222,7 @@ class DQN(object):
                 s = tf.reshape(frames, [1, self.model.shape[0], self.model.shape[1], self.cfg.num_frames])
                 reward, logits, q = self.perform_action(s)
                 episode_reward += reward
+                steps += 1
                 self.true_global_step += 1
 
                 if count % self.cfg.num_frames == 0:
@@ -246,12 +250,13 @@ class DQN(object):
                 
             # Train on experiences from memory
             episode_rewards.append(episode_reward)
-            self.update(episode_rewards)
+            episode_steps.append(steps)
+            self.update(episode_rewards, episode_steps)
             # Update target network
             if episode % (self.cfg.update_target_rate * self.cfg.episodes) == 0:
                 self.update_target()
 
-            if episode % 100 == 0:
+            if episode % 1000 == 0:
                 time_per_step = 0.005
                 images = np.array(episode_frames)
                 self.make_gif(images=images,fname=self.frames_path+"/f"+str(episode)+'.gif',
