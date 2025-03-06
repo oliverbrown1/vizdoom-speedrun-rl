@@ -37,8 +37,8 @@ maps
 				requiredarchives = "gzdoom";
 			}
 		}
-		viewpositiony = -266.4229f;
-		viewpositionx = 449.6895f;
+		viewpositiony = -408.631f;
+		viewpositionx = 573.1176f;
 		
 		testprecommand
 		{
@@ -62,7 +62,7 @@ maps
 			background = "";
 			backoffsety = 0;
 		}
-		viewscale = 0.5365727f;
+		viewscale = 0.906807f;
 		
 		reloadresourceprecommand
 		{
@@ -114,7 +114,7 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
-				caretposition = 507;
+				caretposition = 210;
 				activetab = true;
 			}
 		}
