@@ -7,9 +7,9 @@ from scipy.interpolate import interp1d
 from scipy.interpolate import make_interp_spline
 from scipy.ndimage import gaussian_filter1d
 
-name = "maze"
+name = "maze_demo"
 # both inclusive
-nums = ["demo_1","demo_2","demo_3","demo_4"]
+nums = [4,1,2,3]
 # num_start, num_end = 1,3
 
 def load_experiment_data(name, nums):
@@ -25,6 +25,8 @@ def load_experiment_data(name, nums):
     """
     experiments = []
     # Look for all CSV files in the directory
+    n = ["2000 steps","3000 steps","4000 steps","5000 steps"]
+    c = 0
     for i in nums:
         filename = f"{name}_{i}"
         text_file = f"{filename}.txt"
@@ -46,10 +48,11 @@ def load_experiment_data(name, nums):
                     #     parameters[key.strip()] = value.strip()
         
         experiments.append({
-            'name': filename,
+            'name': n[c],
             'results': df,
             'parameters': parameters
         })
+        c += 1
     
     return experiments
 
@@ -144,7 +147,7 @@ if __name__ == "__main__":
     experiments = load_experiment_data(name, nums)
     
     # Plot the training curves (reward vs. step)
-    plot_training_curves(experiments, metric_name="Mean Reward Against Episodes")
+    plot_training_curves(experiments, metric_name="Steps per episode")
     
     # Aggregate the final rewards and parameters into a summary DataFrame.
     # summary_df = aggregate_final_rewards(experiments, metric_name="Mean Reward Against Episodes")

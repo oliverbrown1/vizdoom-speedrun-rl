@@ -71,10 +71,10 @@ class Agent(object):
         import os
         current_working_directory = os.getcwd()
         print(current_working_directory)
-        game.set_doom_scenario_path("../../maps/maze.wad")
+        game.set_doom_scenario_path("../../maps/my_way_home.wad")
         # game.set_doom_map("map01")
         # needed for custom maze scenarios
-        game.set_doom_map("map02")
+        # game.set_doom_map("map02")
         game.set_screen_resolution(ScreenResolution.RES_400X225)
         game.set_screen_format(ScreenFormat.RGB24)
         game.set_render_hud(False)
@@ -210,10 +210,10 @@ class Agent(object):
 
                     # If the episode hasn't ended, but the experience buffer is full, then we
                     # make an update step using that experience rollout.
-                    if len(episode_buffer) == 64 and d is False and episode_step_count != max_episode_length - 1:
+                    # if len(episode_buffer) == 64 and d is False and episode_step_count != max_episode_length - 1:
                     # A3C and n-step q-learning -> instead of updating the network every n steps, we update it at the end of episode
                     # because reward can only be earned at the end of the episode for basic_scenario.wad
-                    # if d:
+                    if d:
                         # Since we don't know what the true final return is,
                         # we "bootstrap" from our current value estimation.
                         v1 = sess.run(self.local_AC_network.value,

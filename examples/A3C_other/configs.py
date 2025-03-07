@@ -7,16 +7,16 @@ RNN_DIM = 256
 new_img_dim = (108, 60)
 
 
-filepath="maze_demo_4"
+filepath="mwh_main"
 
 # hyperparameters we control
 
-max_episodes = 1100
+max_episodes = 5100
 num_workers= 8
 living_reward = -0.001
 gamma=0.99
-lr=1e-5
+lr=1e-6
 frameskip=4
-gradient_clip_val = 20
+gradient_clip_val = 30
 episode_timeout_steps = 2000
 

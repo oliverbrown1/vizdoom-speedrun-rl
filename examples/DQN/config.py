@@ -11,7 +11,7 @@ parser = argparse.ArgumentParser()
 
 # exp_main
 
-filename = "exp_main"
+filename = "maze_main"
 
 # # Possible actions
 # shoot = [1, 0, 0]
@@ -47,11 +47,11 @@ actions=get_actions()
 train_arg = add_argument_group("Training")
 
 train_arg.add_argument("--learning_rate", type=float,
-                       default=1e-5,
+                       default=1e-4,
                        help="Learning rate (gradient step size)")
 
 train_arg.add_argument("--gradient_clip_val", type=float,
-                       default=10,
+                       default=20,
                        help="Amount to clip gradients by (stabilisation)")
 
 train_arg.add_argument("--living_reward", type=float,
@@ -59,11 +59,11 @@ train_arg.add_argument("--living_reward", type=float,
                        help="Living reward for the agent")
 
 train_arg.add_argument("--episode_timeout_steps", type=float,
-                       default=2000,
+                       default=4000,
                        help="Steps taken by agent until timeout")
 
 train_arg.add_argument("--discount", type=float,
-                       default=0.99,
+                       default=0.95,
                        help="Ensures Q function will converge by providing diminishing returns. Must be < 1")
 
 train_arg.add_argument("--epsilon", type=float,

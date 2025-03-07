@@ -50,7 +50,7 @@ def tflog2pandas(path):
 
 
 
-filename = "maze_10"
+filename = "mwh_main"
 
 df=tflog2pandas(f"./{filename}")
 
@@ -60,20 +60,20 @@ df.to_csv(f"./results/{filename}.csv")
 # df.to_csv(f'./results/{filename}.csv', index=False)
 
 parameters = "actions=FORWARD, SPEED, TLEFT, TRIGHT\n"
-parameters += "lr=1e-4\n"
+parameters += "lr=1e-6\n"
 parameters += "living_reward=-0.001\n"
-parameters += "gamma=0.9\n"
+parameters += "gamma=0.99\n"
 parameters += "epsilon=1\n"
 parameters += "batch_size=64\n"
-parameters += "max_episodes=1000\n"
+parameters += "max_episodes=5000\n"
 parameters += "entropy_rate=1e-4\n"
-parameters += "update_target_rate=0.25\n"
+parameters += "update_target_rate=0.2\n"
 parameters += "alpha=0.6\n"
 parameters += "frameskip=4\n"
 parameters += "decay_rate=0.9995 (begins after 200 episodes)\n"
 parameters += "experience_replay_size=100k\n"
 parameters += "gradient_clip_val = 20\n"
-parameters += "episode_timeout_steps = 4000"
+parameters += "episode_timeout_steps = 2000"
 
 
 

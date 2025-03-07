@@ -18,13 +18,14 @@ class replay_memory(object):
     def __init__(self, cfg):
         self.cfg = cfg
         self.memory = []
-        self.protected = self.cfg.cap // 5
+        # self.protected = self.cfg.cap // 5
 
     def push(self, exp):
         size = len(self.memory)
         # Remove oldest memory first
         if size == self.cfg.cap:
-            self.memory.pop(random.randint(self.protected, size-1))
+            # self.memory.pop(random.randint(self.protected, size-1))
+            self.memory.pop(random.randint(0,size-1))
         self.memory.append(exp)
     
     def fetch(self):
@@ -45,7 +46,7 @@ class DQN(object):
 
         self.cfg = cfg
         self.game = vzd.DoomGame()
-        self.game.load_config("../../maps/basic_scenario.cfg")
+        self.game.load_config("../../maps/maze.cfg")
         self.game.set_window_visible(False)
         self.game.set_episode_timeout(cfg.episode_timeout_steps)
         self.game.set_living_reward(self.cfg.living_reward)
@@ -91,7 +92,7 @@ class DQN(object):
         if self.global_step.numpy() % cfg.log_freq == 0:
             # Log scalars
             # self.writer.add_scalar('loss', loss.numpy(), self.global_step)
-            # self.writer.add_scalar('reward against episodes', np.mean(rewards[-cfg.log_freq:]), self.global_step)
+            self.writer.add_scalar('reward against episodes', np.mean(rewards[-cfg.log_freq:]), self.global_step)
             # self.writer.add_scalar('reward against steps', np.mean(rewards[-cfg.log_freq:]), self.true_global_step)
             self.writer.add_scalar("steps against episodes", np.mean(steps[-cfg.log_freq:]), self.global_step)
             self.writer.flush()

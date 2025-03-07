@@ -49,26 +49,26 @@ def tflog2pandas(path):
 # maze_5 -> episode_timeout = 5000
 # maze_6 -> episode_timeout = 4000, update_target_rate = 0.1
 
-filename = "maze_demo_4"
+filename = "mwh_main"
 
 df=tflog2pandas(f"./{filename}/summaries/agent_0")
 # Save to CSV
-df.to_csv(f"./demo/{filename}.csv")
+df.to_csv(f"./results/{filename}.csv")
 # df.to_csv(f'./results/{filename}.csv', index=False)
 
 parameters = "actions=FORWARD, SPEED, TLEFT, TRIGHT\n"
 parameters += "action_combinations=all\n"
-parameters += "max_episodes=1000\n"
+parameters += "max_episodes=5000\n"
 parameters += "num_workers=8\n"
 parameters += "living_reward=-0.001\n"
 parameters += "gamma=0.99\n"
-parameters += "lr=1e-5\n"
+parameters += "lr=1e-6\n"
 parameters += "frameskip=4\n"
-parameters += "network_update_interval=64 steps\n"
-parameters += "gradient_clip_val=20\n"
+parameters += "network_update_interval=max steps\n"
+parameters += "gradient_clip_val=30\n"
 parameters += "notes=episode timeout 2000 steps"
 
 
 
-with open(f"./demo/{filename}.txt", "w") as file:
+with open(f"./results/{filename}.txt", "w") as file:
     file.write(parameters)

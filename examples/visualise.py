@@ -7,9 +7,9 @@ from scipy.interpolate import interp1d
 from scipy.interpolate import make_interp_spline
 from scipy.ndimage import gaussian_filter1d
 
-name = "mwh"
+name = "maze"
 # both inclusive
-nums = range(6,10)
+nums = [1,2]
 # num_start, num_end = 1,3
 
 def load_experiment_data(name, nums):
@@ -24,6 +24,8 @@ def load_experiment_data(name, nums):
             - 'parameters': a dict of parameter names/values from the TXT file
     """
     experiments = []
+    algs = ["DQN", "A3C"]
+    c = 0
     # Look for all CSV files in the directory
     for i in nums:
         filename = f"{name}_{i}"
@@ -46,14 +48,16 @@ def load_experiment_data(name, nums):
                     #     parameters[key.strip()] = value.strip()
         
         experiments.append({
-            'name': filename,
+            'name': algs[c],
             'results': df,
             'parameters': parameters
         })
+
+        c += 1
     
     return experiments
 
-def plot_training_curves(experiments, metric_name, sigma):
+def plot_training_curves(experiments, first_metric, second_metric):
     """
     Plot training curves for a given metric (by default "Mean Reward Against Episodes")
     for each experiment.
@@ -63,7 +67,7 @@ def plot_training_curves(experiments, metric_name, sigma):
     for exp in experiments:
         df = exp['results']
         # Filter the DataFrame for rows matching the metric of interest.
-        df_metric = df[df['metric'] == metric_name]
+        df_metric = df[(df['metric'] == first_metric) | (df['metric'] == second_metric)]
         df_metric = df_metric.sort_values(by='step')
         x = df_metric['step'].values
         y = df_metric['value'].values
@@ -72,7 +76,7 @@ def plot_training_curves(experiments, metric_name, sigma):
         # X_=np.linspace(x.min(), x.max(), 500)
         # spline = make_interp_spline(x, y, k=3)
         # Y_= spline(X_)
-        # # Adjust for more/less smoothing
+        sigma = 5 # Adjust for more/less smoothing
         y_smoothed = gaussian_filter1d(y, sigma=sigma)
         X_ = x
         Y_ = y_smoothed
@@ -91,7 +95,7 @@ def plot_training_curves(experiments, metric_name, sigma):
 
     print(params_df)
     plt.xlabel("Step (Episode)")
-    plt.ylabel("Mean Reward")
+    plt.ylabel("Mean Steps")
     plt.title(f"Results for experiments {name}")
     plt.legend(fontsize=8, loc='best')
     plt.tight_layout()
@@ -138,26 +142,13 @@ def plot_parameter_vs_reward(summary_df, parameter_name):
     plt.tight_layout()
     plt.show()
 
-
-def calculate_statistics(experiment, metric):
-    df = experiment['results']
-    df_metric = df[df['metric'] == metric]
-    average =  df_metric['value'].values.mean()
-    minimum = df_metric['value'].values.min()
-    variance = df_metric['value'].values.var()
-
-    print(f"Average: {average}, Min: {minimum} Var: {variance}")
-
-
-
 if __name__ == "__main__":
     # Set the directory containing your experiment CSV and TXT files.
-    os.chdir("./results")
+    os.chdir("./demo_comparison")
     experiments = load_experiment_data(name, nums)
     
     # Plot the training curves (reward vs. step)
-    plot_training_curves(experiments, metric_name="steps_against_episodes", sigma=5)
-    # calculate_statistics(experiments[0], "reward_against_steps")
+    plot_training_curves(experiments, first_metric="Steps per episode", second_metric="steps_against_episodes")
     
     # Aggregate the final rewards and parameters into a summary DataFrame.
     # summary_df = aggregate_final_rewards(experiments, metric_name="Mean Reward Against Episodes")

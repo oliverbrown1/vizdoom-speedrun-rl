@@ -1,0 +1,11 @@
+actions=FORWARD, SPEED, TLEFT, TRIGHT
+action_combinations=all
+max_episodes=5000
+num_workers=8
+living_reward=-0.001
+gamma=0.99
+lr=1e-5
+frameskip=4
+network_update_interval=max steps
+gradient_clip_val=20
+notes=episode timeout 2000 steps
