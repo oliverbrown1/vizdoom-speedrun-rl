@@ -18,15 +18,15 @@ There are also gifs that are created to watch the agent play.
 
 #### Dependencies
 
-Python <= 3.7.*
-ViZDoom >= 1.1.8
-Tensorflow == 1.15.0 
-Tensorboard == 1.15.0
-Keras == 2.3.1
-Seaborn == 0.12.0
-Scipy == 1.73.0
-Moviepy == 1.0.3
-Matplotlib == 3.5.3
+* Python <= 3.7.* 
+* ViZDoom >= 1.1.8
+* Tensorflow == 1.15.0 
+* Tensorboard == 1.15.0
+* Keras == 2.3.1
+* Seaborn == 0.12.0
+* Scipy == 1.73.0
+* Moviepy == 1.0.3
+* Matplotlib == 3.5.3
 
 
 
